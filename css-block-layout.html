@@ -30,13 +30,18 @@
       margin: 16px auto;
     }
 
-    #d1 {
+    #d1,
+    #d2 {
       width: 600px;
       margin: 0 auto;
       margin-bottom: 20px;
     }
 
-    div:not([id='d1']) {
+    #d2 {
+      font-size: 0;
+    }
+
+    div div {
       box-sizing: border-box;
       width: 180px;
       height: 40px;
@@ -47,18 +52,33 @@
       background-color: pink;
     }
 
-    div:not([id='d1']):hover {
+    /* div:not([id='d1']):hover {
+      background-color: red;
+    } */
+
+    #d1 div:hover,
+    #d2 div:hover {
       background-color: red;
     }
 
-    div:nth-child(3n+2) {
+    #d1 div:nth-child(3n+2) {
       margin-left: 210px;
       margin-top: -40px;
     }
 
-    div:nth-child(3n+3) {
+    #d1 div:nth-child(3n+3) {
       margin-left: 420px;
       margin-top: -40px;
+    }
+
+    #d2 div {
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 30px;
+    }
+
+    #d2 div:nth-child(3n+3) {
+      margin-right: 0;
     }
 
     .p3 {
@@ -86,6 +106,21 @@
     页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
     页面主体 宽度600px</p>
   <div id="d1">
+    <div>宽180高40(包含边框)</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>水平间隙30px</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>垂直间隙15px</div>
+    <div>产品</div>
+    <div>产品</div>
+    <div>边框宽度3px</div>
+    <div>产品</div>
+    <div>产品</div>
+  </div>
+
+  <div id="d2">
     <div>宽180高40(包含边框)</div>
     <div>产品</div>
     <div>产品</div>
