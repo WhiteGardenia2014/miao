@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oald-block</title>
+  <style>
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      min-width: 930px;
+      font-family: "Averia Serif Libre";
+      font-size: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* search */
+    .search {
+      overflow: hidden;
+      display: inline-block;
+      overflow: hidden;
+      width: 200px;
+      height: 100%;
+      background-color: #EAEEF3;
+      box-shadow: inset -3px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 26px;
+      line-height: 72px;
+      font-weight: 400;
+      color: #53637D;
+      text-align: right;
+      padding-right: 8px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    input {
+      width: 186px;
+      height: 25px;
+      outline: none;
+      border: 1px solid silver;
+      border-radius: 12px;
+      line-height: 18px;
+      margin: 5px 1px 7px 7px;
+    }
+
+    .word_list {
+      height: calc(100% - 109px);
+      overflow: auto;
+    }
+
+    .word_list div {
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      color: #426DC9;
+    }
+
+    .word_list div:hover {
+      border-top: 1px solid #8FAAD9;
+      border-bottom: 1px solid #8FAAD9;
+      background-color: #BBCEE9;
+      color: black;
+    }
+
+    .word_list div a {
+      display: block;
+      height: 22px;
+      line-height: 22px;
+      font-size: 18px;
+      color: inherit;
+      margin-left: 15px;
+      padding: 3px 0;
+    }
+
+    /* main */
+    .main {
+      overflow: hidden;
+      display: inline-block;
+      width: calc(100% - 600px);
+      min-width: 330px;
+      height: 100%;
+      background-color: #FFF;
+    }
+
+    .main header {
+      box-sizing: border-box;
+      overflow: hidden;
+      height: 72px;
+      padding: 10px;
+    }
+
+    .main header a {
+      display: block;
+      height: 52px;
+      line-height: 52px;
+      font-size: 26px;
+      color: #53637D;
+    }
+
+    .main .content {
+      box-sizing: border-box;
+      overflow: auto;
+      width: 100%;
+      height: calc(100% - 72px);
+      padding: 15px;
+      box-shadow: inset -3px 0px 8px rgba(0, 0, 0, 0.3);
+      font-size: 30px;
+    }
+
+    /* vocabulary */
+    .vocabulary {
+      overflow: hidden;
+      display: inline-block;
+      width: 200px;
+      height: 100%;
+      background-color: #EAEEF3;
+      box-shadow: inset -3px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* history */
+    .history {
+      overflow: hidden;
+      display: inline-block;
+      width: 200px;
+      height: 100%;
+      background-color: #EAEEF3;
+      box-shadow: inset -3px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* scrollbar  */
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-thumb {
+      overflow: visible;
+      border-radius: 4px;
+      border: solid 1px #a6a6a6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      background: -webkit-linear-gradient(left, rgba(202, 202, 202, 0.07) 0%, rgba(229, 229, 229, 0.07) 100%);
+      box-shadow: 0 0 1px 0 rgba(0, 0, 0, .15) inset, 0 1px 0 0 #fff;
+      background-color: #e5e5e5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: -webkit-linear-gradient(left, rgba(233, 233, 233, 0.05) 0%, rgba(221, 221, 221, 0.05) 100%);
+      box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+      background-color: #e9e9e9;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+      box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+      background-color: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.03) 100%);
+      box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .05);
+      background-color: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-button {
+      height: 0;
+      display: block;
+      background-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="search">
+    <h1>OALD-inline</h1>
+    <input type="search">
+    <div class="word_list">
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+    </div>
+  </div>
+  <div class="main">
+    <header>
+      <a href="#">OALD-inline</a>
+    </header>
+    <div class="content">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem consectetur unde quod recusandae
+      aspernatur assumenda asperiores, aperiam tempore facere, sequi, cum fuga est sint voluptatibus sunt enim ducimus
+      quo vitae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis sapiente minus placeat aut unde, soluta
+      laborum. Veritatis quisquam tenetur nostrum ex perspiciatis maiores quo earum quibusdam quidem, blanditiis quod
+      et?
+    </div>
+  </div>
+  <div class="vocabulary">
+    <h1>Vocabulary</h1>
+    <input type="search">
+    <div class="word_list">
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+    </div>
+  </div>
+  <div class="history">
+    <h1>History</h1>
+    <input type="search">
+    <div class="word_list">
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+      <div><a href="#">abandon</a></div>
+    </div>
+  </div>
+</body>
+
+</html>
