@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: flow-root;
+    }
+
+    div.icon {
+      display: flow-root;
+      float: left;
+      width: 240px;
+      height: 140px;
+      border: 1px solid red;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    i {
+      display: block;
+      background-image: url(css-sprite-images/nav_logo240_hr.webp);
+      background-repeat: no-repeat;
+      box-shadow: inset 0 0 1px red;
+    }
+
+    .icon_phone {
+      width: 40px;
+      height: 40px;
+      background-position: -212px -158px;
+    }
+
+    .icon_search_white {
+      width: 40px;
+      height: 40px;
+      background-position: -217px -113px;
+      background-color: gray;
+    }
+
+    .icon_position_gray {
+      width: 30px;
+      height: 30px;
+      background-position: -185px -80px;
+    }
+
+    .icon_set {
+      width: 40px;
+      height: 40px;
+      background-position: -81px -515px;
+    }
+
+    .icon_person {
+      width: 30px;
+      height: 30px;
+      background-position: -29px -655px;
+    }
+
+    .icon_earth {
+      width: 30px;
+      height: 30px;
+      background-position: -89px -655px;
+    }
+
+    /* ***** animation ***** */
+    main {
+      width: 64px;
+      height: 64px;
+      /* border: 1px solid red; */
+      margin: 30px 50px;
+      background-image: url(css-sprite-images/animation_sprites.png);
+      background-repeat: no-repeat;
+      animation: walk 1s steps(9) infinite;
+    }
+
+    @keyframes walk {
+      0% {
+        background-position: 0 -64px;
+      }
+
+      100% {
+        background-position: -576px -64px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="icon">
+      <i class="icon_phone"></i>
+      <p>class="icon_phone"<br> width:40px <br> height:40px</p>
+    </div>
+    <div class="icon">
+      <i class="icon_search_white"></i>
+      <p>class="icon_search_white"<br> width:40px <br> height:40px</p>
+    </div>
+    <div class="icon">
+      <i class="icon_position_gray"></i>
+      <p>class="icon_position_gray"<br> width:30px <br> height:30px</p>
+    </div>
+    <div class="icon">
+      <i class="icon_set"></i>
+      <p>class="icon_set"<br> width:40px <br> height:40px</p>
+    </div>
+    <div class="icon">
+      <i class="icon_person"></i>
+      <p>class="icon_person"<br> width:30px <br> height:30px</p>
+    </div>
+    <div class="icon">
+      <i class="icon_earth"></i>
+      <p>class="icon_earth"<br> width:30px <br> height:30px</p>
+    </div>
+  </div>
+
+  <main>
+
+  </main>
+</body>
+
+</html>
