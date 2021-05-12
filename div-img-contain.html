@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    main {
+      display: flow-root;
+    }
+
+    div {
+      float: left;
+      position: relative;
+      height: 400px;
+      width: 300px;
+      margin: 30px;
+      border: 3px solid rgb(183, 72, 218);
+    }
+
+    .one img {
+      display: block;
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .two img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .three {
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .bgi_1 {
+      background-image: url(div-img-contain-images/img1.jpg);
+    }
+
+    .bgi_2 {
+      background-image: url(div-img-contain-images/img2.jpg);
+    }
+
+    .bgi_3 {
+      background-image: url(div-img-contain-images/img3.jpg);
+    }
+
+    .bgi_4 {
+      background-image: url(div-img-contain-images/img4.jpg);
+    }
+
+    h2 {
+      position: relative;
+    }
+
+    span {
+      font-size: 16px;
+      color: #aaa;
+    }
+
+    .ans:hover+img {
+      display: block;
+    }
+
+    h2 img {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h2>利用 img 绝对定位实现水平垂直居中<span class="ans"> Ans</span>
+      <img src="div-img-contain-images/code1.png" alt="">
+    </h2>
+    <div class="one img_1"><img src="div-img-contain-images/img1.jpg" alt=""></div>
+    <div class="one img_2"><img src="div-img-contain-images/img2.jpg" alt=""></div>
+    <div class="one img_3"><img src="div-img-contain-images/img3.jpg" alt=""></div>
+    <div class="one img_4"><img src="div-img-contain-images/img4.jpg" alt=""></div>
+  </main>
+  <main>
+    <h2>利用 img 的 object-fit 属性实现水平垂直居中<span class="ans"> Ans</span>
+      <img src="div-img-contain-images/code2.png" alt="">
+    </h2>
+    <div class="two imgfit_1"><img src="div-img-contain-images/img1.jpg" alt=""></div>
+    <div class="two imgfit_2"><img src="div-img-contain-images/img2.jpg" alt=""></div>
+    <div class="two imgfit_3"><img src="div-img-contain-images/img3.jpg" alt=""></div>
+    <div class="two imgfit_4"><img src="div-img-contain-images/img4.jpg" alt=""></div>
+  </main>
+  <main>
+    <h2>利用 background-image 实现水平垂直居中<span class="ans"> Ans</span>
+      <img src="div-img-contain-images/code3.png" alt="">
+    </h2>
+    <div class="three bgi_1"></div>
+    <div class="three bgi_2"></div>
+    <div class="three bgi_3"></div>
+    <div class="three bgi_4"></div>
+  </main>
+</body>
+
+</html>
