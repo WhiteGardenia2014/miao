@@ -46,17 +46,20 @@
       }
     }
 
-    .checkbox input {
+    div.checkbox {
       width: 100px;
       height: 100px;
-      appearance: none;
       background-image: url(twitter-heart-images/web_heart_animation.png);
       background-position: 0 0;
     }
 
-    .checkbox input:checked {
-      background-position: -2800px 0;
+    input[id="heart"]:checked+label div {
       transition: background-position 1s steps(28, end);
+      background-position: -2800px 0;
+    }
+
+    input[id="heart"] {
+      display: none;
     }
   </style>
 </head>
@@ -71,9 +74,12 @@
     <legend>animation</legend>
     <div class="animation"></div>
   </fieldset>
-  <fieldset class="checkbox">
+  <fieldset>
     <legend>checkbox</legend>
-    <input type="checkbox">
+    <input type="checkbox" id="heart">
+    <label for="heart">
+      <div class="checkbox"></div>
+    </label>
   </fieldset>
 </body>
 
