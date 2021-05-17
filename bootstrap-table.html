@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap-table</title>
+  <link rel="stylesheet" href="bootstrap-table/bootstrap-table.css">
+  <script src="bootstrap-table/bootstrap-table.js"></script>
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .table_container {
+      height: 200px;
+      width: 75%;
+      margin: 20px auto;
+    }
+
+    .change_class {
+      width: 80%;
+      margin: 50px auto;
+      font-family: Consolas;
+      font-size: 20px;
+    }
+
+    .change_class input {
+      width: 20px;
+      height: 20px;
+    }
+
+    .change_class label {
+      vertical-align: top;
+      padding-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="table_container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="change_class">
+    <input type="checkbox" id="class_table" checked="checked">
+    <label for="class_table">table</label>
+    <input type="checkbox" id="class_table-dark">
+    <label for="class_table-dark">table-dark</label>
+    <input type="checkbox" id="class_table-striped">
+    <label for="class_table-striped">table-striped</label>
+    <input type="checkbox" id="class_table-hover">
+    <label for="class_table-hover">table-hover</label>
+    <input type="checkbox" id="class_table-bordered">
+    <label for="class_table-bordered">table-bordered</label>
+    <input type="checkbox" id="class_table-borderless">
+    <label for="class_table-borderless">table-borderless</label>
+    <p>class="<span>table</span>"</p>
+  </div>
+</body>
+
+</html>
