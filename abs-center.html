@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>abs-center</title>
+  <style>
+    main {
+      float: left;
+      width: 310px;
+      height: 310px;
+      margin: 20px;
+      padding: 10px;
+    }
+
+    .container {
+      width: 300px;
+      height: 300px;
+      border: 2px solid #7096CF;
+    }
+
+    .content {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #7FCF70;
+    }
+
+    .container.position {
+      position: relative;
+    }
+
+    .content.position {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    /* 不能加浮动 */
+    .container.table {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .content.table {
+      margin: 0 auto;
+    }
+
+    .container.inline-block {
+      font-size: 0;
+      line-height: 300px;
+      text-align: center;
+    }
+
+    .content.inline-block {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <span>position:absolute</span>
+    <div class="container position">
+      <div class="content position"></div>
+    </div>
+  </main>
+  <main>
+    <span>display:table-cell</span>
+    <div class="container table">
+      <div class="content table"></div>
+    </div>
+  </main>
+  <main>
+    <span>display:inline-block</span>
+    <div class="container inline-block">
+      <div class="content inline-block"></div>
+    </div>
+  </main>
+
+</body>
+
+</html>
