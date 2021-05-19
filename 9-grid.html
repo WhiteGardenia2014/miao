@@ -89,6 +89,22 @@
       border-color: red;
       z-index: 1;
     }
+
+    /* 利用伪元素边框 */
+    .table_after td {
+      border: 4px solid blue;
+      position: relative;
+    }
+
+    .table_after td:hover::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      bottom: -4px;
+      left: -4px;
+      right: -4px;
+      border: 4px solid red;
+    }
   </style>
 </head>
 
@@ -130,9 +146,6 @@
   </main>
   <main class="table_style">
     <table>
-      <col>
-      <col>
-      <col>
       <tbody>
         <tr>
           <td>1</td>
@@ -162,6 +175,27 @@
     <div>7</div>
     <div>8</div>
     <div>9</div>
+  </main>
+  <main class="table_after">
+    <table>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 </body>
 
