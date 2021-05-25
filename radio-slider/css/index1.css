@@ -1,0 +1,36 @@
+/* 实现所有图片向右侧移出，但是从左方进入的，核心逻辑 */
+/* 为所有图片盒子添加向右移动的动画，但是当前选中的盒子移除这个动画 */
+/* 因此当选中新的盒子时，只有上一次选中的盒子会重新添加这个动画，实现向右移出的效果 */
+/* 而新的盒子依然从左方进入 */
+
+.container input:checked~.imgbox div span {
+  animation: slideOut 0.5s ease-in-out;
+}
+
+@keyframes slideOut {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 150px;
+  }
+}
+
+
+.container input:nth-child(1):checked~.imgbox div span:nth-child(1),
+.container input:nth-child(2):checked~.imgbox div span:nth-child(2),
+.container input:nth-child(3):checked~.imgbox div span:nth-child(3),
+.container input:nth-child(4):checked~.imgbox div span:nth-child(4) {
+  animation: none;
+  transition: left 0.5s ease-in-out;
+  left: 0;
+  z-index: 9;
+}
+
+.container input:nth-child(1):checked~.titles h3:nth-child(1),
+.container input:nth-child(2):checked~.titles h3:nth-child(2),
+.container input:nth-child(3):checked~.titles h3:nth-child(3),
+.container input:nth-child(4):checked~.titles h3:nth-child(4) {
+  opacity: 1;
+}
