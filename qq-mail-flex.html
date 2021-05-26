@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QQ邮箱-flex</title>
+  <style>
+    html {
+      overflow: hidden;
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+    }
+
+    body,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      list-style: none;
+      font-size: 30px;
+      margin: 10px;
+    }
+
+    .container {
+      height: 100%;
+    }
+
+    .topdata {
+      overflow: hidden;
+      height: 66px;
+      background-color: rgb(38, 240, 240);
+      font-size: 30px;
+      line-height: 15px;
+    }
+
+    .topline {
+      height: 0;
+      border-top: 4px solid #285586;
+    }
+
+    .main {
+      display: flex;
+      height: calc(100% - 70px);
+    }
+
+    .nav {
+      overflow: auto;
+      height: 100%;
+      width: 188px;
+      background-color: #F5F5F5;
+      border-right: 1px solid #E2E2E2;
+    }
+
+    .content {
+      overflow: auto;
+      height: 100%;
+      flex: 1;
+      font-size: 30px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topdata">
+      <p>
+        QQ-MAIL-flex
+      </p>
+    </div>
+    <div class="topline"></div>
+    <div class="main">
+      <div class="nav">
+        <ul>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+          <li>收信箱</li>
+        </ul>
+      </div>
+      <div class="content">
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla autem sit exercitationem facere voluptatem
+          ducimus
+          a dolore placeat aperiam. Sint, nobis. Optio laboriosam soluta quas, animi culpa distinctio? Temporibus,
+          maiores.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quidem pariatur totam ipsa quisquam numquam,
+          neque
+          velit ipsum fugiat voluptates nesciunt sit perspiciatis ipsam magni sapiente? Officia distinctio reiciendis
+          impedit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, vitae aspernatur cum eum nobis odio
+          rerum,
+          explicabo tenetur eligendi accusamus obcaecati! Nam, consequatur? Voluptatum impedit quidem deleniti aliquid
+          aperiam ab.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
