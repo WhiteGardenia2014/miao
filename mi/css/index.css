@@ -1,0 +1,666 @@
+body {
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  margin: 0;
+  height: 4000px;
+}
+
+em {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* header部分开始 */
+
+/* 第一级导航栏开始 */
+.site-topbar {
+  position: relative;
+  height: 40px;
+  font-size: 12px;
+  color: #b0b0b0;
+  background-color: #333;
+}
+
+.container {
+  width: 1226px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.site-topbar .container {
+  height: 40px;
+}
+
+.topbar-nav {
+  height: 40px;
+  line-height: 40px;
+  float: left;
+}
+
+.site-topbar a {
+  display: inline-block;
+  text-decoration: none;
+  color: #b0b0b0;
+  height: 40px;
+  line-height: 42px;
+}
+
+.site-topbar a:hover {
+  color: #fff;
+}
+
+.site-topbar .sep {
+  margin: 0 0.3em;
+  color: #424242;
+}
+
+/* 导航栏下载图片开始 */
+.site-topbar .topbar-download {
+  position: relative;
+}
+
+.site-topbar .topbar-download::before {
+  display: none;
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.site-topbar .topbar-download .appcode {
+  position: absolute;
+  overflow: hidden;
+  top: 40px;
+  left: -32px;
+  width: 124px;
+  height: 0px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px #aaa;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
+  transition: height 0.3s;
+  z-index: 100;
+}
+
+.site-topbar .topbar-download .appcode img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  margin: 18px auto 12px;
+}
+
+.site-topbar .topbar-download:hover .appcode {
+  height: 148px;
+}
+
+.site-topbar .topbar-download:hover::before {
+  display: block;
+}
+
+/* 导航栏下载图片结束 */
+
+/* 导航栏购物车部分 */
+.topbar-cart {
+  position: relative;
+  float: right;
+  width: 120px;
+  height: 40px;
+  font-size: 12px;
+  margin-left: 15px;
+}
+
+.topbar-cart .cart-mini {
+  position: relative;
+  display: block;
+  line-height: 40px;
+  text-align: center;
+  color: #b0b0b0;
+  background: #424242;
+  transition: all 0s 0.3s;
+}
+
+.topbar-cart .cart-mini em {
+  font-size: 20px;
+  line-height: 20px;
+  vertical-align: -4px;
+  margin-right: 4px;
+}
+
+.topbar-cart .cart-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  height: 0px;
+  width: 316px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: all 0.3s;
+  z-index: 99;
+}
+
+.topbar-cart .cart-menu .menu-content {
+  color: #424242;
+  text-align: center;
+  font-size: 12px;
+  padding: 20px 0;
+  line-height: 60px;
+}
+
+.topbar-cart:hover .cart-mini {
+  color: #ff6700;
+  background-color: #fff;
+  transition: all 0.1s;
+}
+
+.topbar-cart:hover .cart-menu {
+  height: 100px;
+}
+
+/* 导航栏登陆栏部分 */
+.topbar-info {
+  position: relative;
+  float: right;
+}
+
+.site-topbar .topbar-info .sep {
+  margin: 0;
+}
+
+.site-topbar .topbar-info a {
+  padding: 0 2px;
+}
+
+.site-topbar .topbar-info a:last-child {
+  padding: 0 9px;
+}
+
+/* 第一级导航栏结束 */
+
+/* 第二级导航栏开始 */
+/* logo模块 */
+.site-header {
+  position: relative;
+  height: 100px;
+}
+
+.site-header>.container {
+  height: 100px;
+  position: static;
+}
+
+.site-header .logo {
+  float: left;
+  position: relative;
+  height: 56px;
+  width: 56px;
+  margin-top: 22px;
+  font-size: 0;
+  background: url(../images/logo-mi.png) no-repeat;
+  background-size: 56px;
+  transform: translateZ(0);
+}
+
+/* 导航栏模块 */
+.site-header .header-nav {
+  float: left;
+  width: 850px;
+  height: 100px;
+}
+
+.site-header .nav-list {
+  padding-top: 13px;
+  height: 87px;
+}
+
+.site-header .nav-item {
+  float: left;
+  height: 87px;
+}
+
+.site-header .nav-space {
+  float: left;
+  height: 87px;
+  width: 178px;
+}
+
+.site-header .nav-item .link {
+  display: block;
+  padding: 25px 10px 38px;
+  color: #333;
+  font-size: 16px;
+}
+
+.site-header .nav-item .link:hover {
+  color: #ff6700;
+}
+
+/* 导航栏滑动下拉菜单栏 */
+.site-header .nav-list .nav-slide-down .slide-down-box {
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  left: 0;
+  height: 0px;
+  background-color: #fff;
+  overflow: hidden;
+  border-top: 1px solid transparent;
+  box-shadow: 0 3px 4px transparent;
+  transition: border-top 0s 0.4s, box-shadow 0.1s 0.3s, height 0.3s 0.1s, visibility 0s 0.4s;
+  visibility: hidden;
+  z-index: 99;
+}
+
+/* 有下拉菜单的子项目集合被hover时，下拉盒子弹出,并重写所有下拉盒子的动画属性，此时下拉盒子的visibility是突变的 */
+/* 当下拉菜单的子项目集合不被hover时，下拉盒子的visibility有0.4s的延迟，见上一条选择器 */
+.site-header .nav-slide-down:hover .slide-down-box {
+  height: 229px;
+  border-top: 1px solid #E0E0E0;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.18);
+  transition: border-top 0s 0.1s, box-shadow 0.3s 0.1s, height 0.3s 0.1s, visibility 0s 0s;
+}
+
+.slide-down-box .container {
+  height: 201px;
+  position: relative;
+}
+
+.slide-down-box .container .children-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* 有下拉菜单的子项目被hover时，该子项目的下拉盒子可见，其他子项目的下拉盒子不可见 */
+.site-header .nav-slide-down .nav-item:hover .slide-down-box {
+  visibility: visible;
+}
+
+/* 滑动菜单内部商品 */
+.slide-down-box .container .children-list {
+  display: flow-root;
+}
+
+.slide-down-box .container .children-list li {
+  position: relative;
+  float: left;
+  width: 180px;
+  height: 166px;
+  padding: 35px 12px 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+.slide-down-box .container .children-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 35px;
+  z-index: 1;
+  width: 1px;
+  height: 100px;
+  background-color: #e0e0e0;
+}
+
+.slide-down-box .container .children-list li:first-child::before {
+  display: none;
+}
+
+.slide-down-box .container .children-list .title {
+  color: #333;
+  margin-top: 12px;
+  line-height: 20px;
+}
+
+.slide-down-box .container .children-list .price {
+  color: #ff6700;
+  margin: 0;
+  line-height: 20px;
+}
+
+/* 搜索栏模块 */
+.site-header .header-search {
+  float: right;
+  width: 296px;
+  height: 50px;
+  margin-top: 25px;
+}
+
+.site-header .header-search .search-form {
+  position: relative;
+  width: 296px;
+  height: 50px;
+  z-index: 9;
+}
+
+.site-header .header-search .search-text {
+  position: absolute;
+  border: 1px solid #e0e0e0;
+  outline: 0;
+  transition: all 0.2s;
+
+  right: 51px;
+  z-index: 1;
+  width: 245px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 48px;
+}
+
+/* 移除input在type="search"时的清除按钮 */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.site-header .header-search .search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52px;
+  height: 50px;
+  color: #616161;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  outline: 0;
+  font-size: 24px;
+  line-height: 24px;
+  z-index: 2;
+  transition: all 0.2s;
+}
+
+.site-header .search-form:hover .search-text,
+.site-header .search-form:hover .search-btn {
+  border-color: #b0b0b0;
+}
+
+.site-header .header-search .search-btn:hover {
+  background: #ff6700;
+  color: #fff;
+  border-color: #ff6700;
+}
+
+/* 第二级导航栏结束 */
+/* header部分结束 */
+
+/* banner部分开始 */
+.home-hero-container {
+  height: 670px;
+}
+
+.home-hero {
+  height: 644px;
+  margin-bottom: 26px;
+}
+
+/* 侧边导航栏部分开始 */
+.home-hero .sidebar {
+  position: absolute;
+  width: 234px;
+  height: 460px;
+  z-index: 50;
+}
+
+.home-hero .sidebar .sidebar-list {
+  position: relative;
+  width: 234px;
+  padding: 20px 0;
+  height: 420px;
+  border: 0;
+  color: #fff;
+  background: rgba(105, 101, 101, .6);
+}
+
+.home-hero .sidebar .sidebar-item {
+  width: 234px;
+  height: 42px;
+}
+
+.home-hero .sidebar .sidebar-item .title {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  height: 42px;
+  line-height: 42px;
+  color: #fff;
+}
+
+.home-hero .sidebar .sidebar-item .title em[class*=iconfont] {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #e0e0e0;
+}
+
+/* 侧边导航栏分类子盒子 */
+.home-hero .sidebar .sidebar-item-children {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 234px;
+  height: 458px;
+  border: 1px solid #e0e0e0;
+  border-left: none;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 18%);
+  background-color: #fff;
+  z-index: 20;
+  visibility: hidden;
+}
+
+/* 侧边导航栏分类子盒子出现动画 */
+.home-hero .sidebar .sidebar-item:hover {
+  background: #ff6700;
+  color: #fff;
+}
+
+.home-hero .sidebar .sidebar-item:hover .sidebar-item-children {
+  visibility: visible;
+}
+
+
+.home-hero .sidebar-item-children .children-list {
+  float: left;
+  height: 456px;
+  width: 248px;
+  padding: 2px 0;
+}
+
+.home-hero .sidebar-item-children .children-list li {
+  position: relative;
+  float: left;
+  width: 265px;
+  height: 76px;
+}
+
+.home-hero .sidebar-item-children .children-list li a {
+  display: block;
+  box-sizing: border-box;
+  width: 265px;
+  height: 76px;
+  padding: 18px 20px;
+  line-height: 40px;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.home-hero .sidebar-item-children .children-list li a:hover {
+  color: #ff6700;
+}
+
+.home-hero .sidebar-item-children .children-list li a img {
+  float: left;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.home-hero .sidebar-item-children .children-list li a .text {
+  float: left;
+  width: 172px;
+  line-height: 40px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 侧边导航栏部分结束 */
+
+/* 主体轮播图部分开始 */
+.home-hero .slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1226px;
+  height: 460px;
+  z-index: 1;
+}
+
+.home-hero .slideshow .input-radio {
+  display: none;
+}
+
+/* 轮播图圆点切换按钮 */
+.home-hero .slideshow .labelbox {
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 15px;
+  right: 20px;
+  width: 100px;
+  height: 21px;
+  padding-left: 18px;
+  z-index: 40;
+}
+
+.home-hero .slideshow .labelbox .small-label-point {
+  display: block;
+  float: left;
+  width: 6px;
+  height: 6px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  margin: 0 4px;
+  overflow: hidden;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.home-hero .slideshow .labelbox .small-label-point:hover {
+  background: hsla(0, 0%, 100%, 0.4);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.home-hero .slideshow .input-radio:nth-child(1):checked~.labelbox label.small-label-point:nth-child(1),
+.home-hero .slideshow .input-radio:nth-child(2):checked~.labelbox label.small-label-point:nth-child(2),
+.home-hero .slideshow .input-radio:nth-child(3):checked~.labelbox label.small-label-point:nth-child(3),
+.home-hero .slideshow .input-radio:nth-child(4):checked~.labelbox label.small-label-point:nth-child(4) {
+  background: hsla(0, 0%, 100%, 0.4);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 轮播图图片部分 */
+.home-hero .slideshow .bannerbox {
+  position: relative;
+  width: 1226px;
+  height: 460px;
+}
+
+.home-hero .slideshow .bannerbox .banner-container {
+  position: absolute;
+  width: 1226px;
+  height: 460px;
+}
+
+.home-hero .slideshow .banner-container a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 234px;
+  display: none;
+  z-index: 25;
+}
+
+.home-hero .slideshow .banner-container img {
+  width: 1226px;
+  height: 460px;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+/* 轮播图切换功能 */
+.home-hero .slideshow .input-radio:nth-child(1):checked~.bannerbox .banner-container:nth-child(1) label,
+.home-hero .slideshow .input-radio:nth-child(2):checked~.bannerbox .banner-container:nth-child(2) label,
+.home-hero .slideshow .input-radio:nth-child(3):checked~.bannerbox .banner-container:nth-child(3) label,
+.home-hero .slideshow .input-radio:nth-child(4):checked~.bannerbox .banner-container:nth-child(4) label {
+  display: block;
+}
+
+.home-hero .slideshow .input-radio:nth-child(1):checked~.bannerbox .banner-container:nth-child(1) a,
+.home-hero .slideshow .input-radio:nth-child(2):checked~.bannerbox .banner-container:nth-child(2) a,
+.home-hero .slideshow .input-radio:nth-child(3):checked~.bannerbox .banner-container:nth-child(3) a,
+.home-hero .slideshow .input-radio:nth-child(4):checked~.bannerbox .banner-container:nth-child(4) a {
+  display: block;
+}
+
+.home-hero .slideshow .input-radio:nth-child(1):checked~.bannerbox .banner-container:nth-child(1) img,
+.home-hero .slideshow .input-radio:nth-child(2):checked~.bannerbox .banner-container:nth-child(2) img,
+.home-hero .slideshow .input-radio:nth-child(3):checked~.bannerbox .banner-container:nth-child(3) img,
+.home-hero .slideshow .input-radio:nth-child(4):checked~.bannerbox .banner-container:nth-child(4) img {
+  opacity: 1;
+}
+
+/* 轮播图左右切换按钮 */
+.home-hero .slideshow .bannerbox .banner-container label {
+  position: absolute;
+  top: 50%;
+  width: 41px;
+  height: 69px;
+  margin-top: -35px;
+  cursor: pointer;
+  outline: none;
+  z-index: 60;
+  opacity: 1;
+  display: none;
+}
+
+.home-hero .slideshow .banner-container label.left {
+  left: 234px;
+  background: url(../images/icon-slides.png) no-repeat -84px 50%;
+}
+
+.home-hero .slideshow .banner-container label.left:hover {
+  background-position: 0 50%;
+}
+
+.home-hero .slideshow .banner-container label.right {
+  right: 0;
+  background: url(../images/icon-slides.png) no-repeat -125px 50%;
+}
+
+.home-hero .slideshow .banner-container label.right:hover {
+  background-position: -42px 50%;
+}
+
+/* 主体轮播图部分结束 */
+
+/* banner部分结束 */
