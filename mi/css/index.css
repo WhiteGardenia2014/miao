@@ -2,7 +2,6 @@ body {
   font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
   margin: 0;
   min-width: 1226px;
-  height: 7443px;
 }
 
 em {
@@ -20,6 +19,10 @@ ul {
 
 li {
   list-style: none;
+}
+
+p {
+  margin: 0;
 }
 
 /* header部分开始 */
@@ -1176,7 +1179,39 @@ input#seckill-3:checked~.label-page-3 {
   transition: all .2s linear;
 }
 
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-last {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 234px;
+  height: 300px;
+  background: transparent;
+  padding: 0;
+}
+
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-last>ul {
+  width: 234px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 234px;
+  height: 143px;
+  background: #fff;
+  transition: all .2s linear;
+}
+
 /* 右侧多卡片盒子内容部分 */
+
+/* 标准大小盒子内容样式 */
 .home-main .xm-plain-box .box-bd .brick-list .brick-item .figure {
   width: 160px;
   height: 160px;
@@ -1222,15 +1257,74 @@ input#seckill-3:checked~.label-page-3 {
   text-decoration: line-through;
 }
 
+/* 小盒子内容样式 */
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .figure {
+  position: absolute;
+  right: 20px;
+  top: 32px;
+  width: 80px;
+  height: 80px;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .title {
+  position: absolute;
+  top: 26px;
+  left: 30px;
+  width: 94px;
+  height: 42px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .price {
+  position: absolute;
+  top: 87px;
+  margin: 0 110px 0 30px;
+  font-size: 12px;
+  color: #ff6700;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .price span {
+  font-size: 14px;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .figure-more {
+  position: absolute;
+  right: 35px;
+  top: 48px;
+  width: 48px;
+  height: 48px;
+  color: #ff6700;
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .title-more {
+  display: block;
+  position: absolute;
+  top: 50px;
+  margin: 0 110px 0 30px;
+  font-size: 18px;
+  color: #333;
+}
+
+.home-main .xm-plain-box .box-bd .brick-list .brick-item-small .title-more span {
+  display: block;
+  font-size: 12px;
+  color: #757575;
+}
+
 /* 商品卡片浮起动画 */
 .home-main .xm-plain-box .brick-item:hover,
-.home-main .xm-plain-box .main-brick-item:hover {
+.home-main .xm-plain-box .main-brick-item:hover,
+.home-main .xm-plain-box .brick-item-small:hover {
   z-index: 2;
   box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
   transform: translate3d(0, -2px, 0);
 }
 
-/* 家电导航盒子切换栏 */
+/* 通用导航盒子切换栏，依赖HTML结构实现 */
 .home-main-radio {
   display: none;
 }
@@ -1243,8 +1337,8 @@ input#seckill-3:checked~.label-page-3 {
   display: flex;
 }
 
-.house-appliance-label-1,
-.house-appliance-label-2 {
+/* 主体通用导航盒子切换栏label样式 */
+.home-main-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -1252,8 +1346,7 @@ input#seckill-3:checked~.label-page-3 {
   font-size: 16px;
 }
 
-.house-appliance-label-1 span,
-.house-appliance-label-2 span {
+.home-main-label span {
   display: inline-block;
   height: 24px;
   transition: color .2s, border .2s;
@@ -1261,14 +1354,668 @@ input#seckill-3:checked~.label-page-3 {
   cursor: pointer;
 }
 
+/* 家电导航盒子切换栏 */
 .house-appliance-label-1 {
   right: 94px;
 }
 
+/* 智能导航盒子切换栏 */
+.house-intelligence-label-1 {
+  right: 124px;
+}
+
+.house-intelligence-label-2 {
+  right: 62px;
+}
+
+/* 搭配导航盒子切换栏 */
+.collocation-label-1 {
+  right: 94px;
+}
+
+/* 配件导航盒子切换栏  */
+.accessories-label-1 {
+  right: 78px;
+}
+
+/* 周边导航盒子切换栏  */
+.peripheral-label-1 {
+  right: 62px;
+}
+
+
 input#house-appliance-radio-1:checked~label.house-appliance-label-1 span,
-input#house-appliance-radio-2:checked~label.house-appliance-label-2 span {
+input#house-appliance-radio-2:checked~label.house-appliance-label-2 span,
+input#house-intelligence-radio-1:checked~label.house-intelligence-label-1 span,
+input#house-intelligence-radio-2:checked~label.house-intelligence-label-2 span,
+input#house-intelligence-radio-3:checked~label.house-intelligence-label-3 span,
+input#collocation-radio-1:checked~label.collocation-label-1 span,
+input#collocation-radio-2:checked~label.collocation-label-2 span,
+input#accessories-radio-1:checked~label.accessories-label-1 span,
+input#accessories-radio-2:checked~label.accessories-label-2 span,
+input#peripheral-radio-1:checked~label.peripheral-label-1 span,
+input#peripheral-radio-2:checked~label.peripheral-label-2 span {
   color: #ff6700;
   border-bottom: 2px solid #ff6700;
 }
 
+/* 小米视频盒子部分开始 */
+.home-main .xm-video-box {
+  width: 1226px;
+  height: 357px;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.home-main .xm-video-box .video-bd {
+  width: 1226px;
+  height: 285px;
+  position: relative;
+}
+
+.home-main .xm-video-box .video-bd .video-list {
+  width: 1226px;
+  height: 285px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-main .xm-video-box .video-bd .video-item {
+  width: 296px;
+  height: 285px;
+  background-color: #fff;
+  transition: all .2s linear;
+}
+
+/* 视频盒子内容样式 */
+.home-main .xm-video-box .video-bd .video-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.home-main .xm-video-box .video-bd .video-item .figure {
+  position: relative;
+  width: 296px;
+  height: 180px;
+  margin: 0 0 28px;
+}
+
+.home-main .xm-video-box .video-bd .video-item .play {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  width: 32px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, .6);
+  color: #fff;
+  transition: all .2s;
+  overflow: hidden;
+  font-size: 30px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.home-main .xm-video-box .video-bd .video-item .title {
+  margin: 0 14px 6px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.home-main .xm-video-box .video-bd .video-item .desc {
+  height: 18px;
+  margin: 0 14px;
+  font-size: 12px;
+  color: #b0b0b0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 视频盒子浮起动画 */
+.home-main .xm-video-box .video-bd .video-item:hover {
+  z-index: 2;
+  box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
+  transform: translate3d(0, -2px, 0);
+}
+
+.home-main .xm-video-box .video-bd .video-item .figure:hover .play {
+  background-color: #ff6700;
+  border-color: #ff6700;
+}
+
+/* 小米视频盒子部分结束 */
+
 /* 页面主体部分结束 */
+
+/* footer部分开始 */
+.site-footer {
+  height: 332px;
+  display: flow-root;
+}
+
+/* footer服务部分 */
+.site-footer .footer-service {
+  box-sizing: border-box;
+  height: 80px;
+  padding: 27px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.site-footer .footer-service ul.service-list {
+  width: 1218px;
+  height: 25px;
+  display: flex;
+}
+
+.site-footer .footer-service ul.service-list li {
+  flex: 1;
+  height: 25px;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: center;
+  border-left: 1px solid #e0e0e0;
+}
+
+.site-footer .footer-service ul.service-list li:first-child {
+  border-left: none;
+}
+
+.site-footer .footer-service ul.service-list li a {
+  color: #616161;
+  transition: color .2s;
+}
+
+.site-footer .footer-service ul.service-list li a:hover {
+  color: #ff6700;
+}
+
+.site-footer .footer-service ul.service-list li a em {
+  margin-right: 6px;
+  font-size: 24px;
+  line-height: 24px;
+  vertical-align: -4px;
+}
+
+/* footer相关链接部分 */
+.site-footer .footer-links {
+  box-sizing: border-box;
+  width: 1226px;
+  height: 252px;
+  padding: 40px 0;
+}
+
+.site-footer .footer-links dl.col-links {
+  float: left;
+  width: 160px;
+  margin: 0;
+}
+
+.site-footer .footer-links .col-links dt {
+  margin: -1px 0 26px;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #424242;
+}
+
+.site-footer .footer-links .col-links dd {
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+
+.site-footer .footer-links .col-links dd a {
+  color: #757575;
+}
+
+.site-footer .footer-links .col-links dd a:hover {
+  color: #ff6700;
+}
+
+/* 联系方式部分 */
+.site-footer .footer-links .col-contact {
+  float: right;
+  width: 251px;
+  border-left: 1px solid #e0e0e0;
+  text-align: center;
+  color: #616161;
+}
+
+.site-footer .footer-links .col-contact p {
+  margin: 0 0 5px;
+  font-size: 12px;
+}
+
+.site-footer .footer-links .col-contact .phone {
+  font-size: 22px;
+  line-height: 1;
+  color: #ff6700;
+}
+
+.site-footer .footer-links .col-contact a.btn-service {
+  display: inline-block;
+  width: 118px;
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+  border: 1px solid #ff6700;
+  background: #fff;
+  color: #ff6700;
+  transition: all .4s;
+}
+
+.site-footer .footer-links .col-contact a.btn-service:hover {
+  color: #fff;
+  background-color: #f25807;
+  border-color: #f25807;
+}
+
+.site-footer .footer-links .col-contact .follow {
+  font-size: 12px;
+  margin-top: 2px;
+  position: relative;
+}
+
+.site-footer .footer-links .col-contact .follow a {
+  color: #616161;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.site-footer .footer-links .col-contact .follow a:hover {
+  color: #ff6700;
+}
+
+.site-footer .footer-links .col-contact .follow img {
+  width: 126px;
+  height: 126px;
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  left: 100px;
+  display: none;
+}
+
+.site-footer .footer-links .col-contact .follow .wx {
+  position: relative;
+  z-index: 5;
+}
+
+.site-footer .footer-links .col-contact .follow .wx:hover~img {
+  display: block;
+}
+
+/* footer页面信息部分 */
+.footer .site-info {
+  height: 206px;
+  padding: 30px 0;
+  font-size: 12px;
+  background: #fafafa;
+}
+
+.footer .site-info .container {
+  height: 157px;
+}
+
+.footer .site-info .logo {
+  width: 56px;
+  height: 56px;
+  background: url(../images/logo-mi.png) no-repeat;
+  background-size: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.footer .site-info .info-text {
+  box-sizing: border-box;
+  padding-top: 1px;
+  padding-left: 67px;
+  height: 110px;
+  color: #b0b0b0;
+}
+
+.footer .site-info .info-text p {
+  line-height: 18px;
+}
+
+.footer .site-info .info-text p.sites {
+  line-height: 19px;
+}
+
+.footer .site-info .info-text p a {
+  color: #b0b0b0;
+}
+
+.footer .site-info .info-text p a:hover {
+  color: #ff6700;
+}
+
+.footer .site-info .info-text p.sites a {
+  color: #757575;
+}
+
+.footer .site-info .info-text p.sites a:hover {
+  color: #ff6700;
+}
+
+.footer .site-info .info-links {
+  height: 28px;
+  margin: 4px 0 15px;
+  padding-left: 67px;
+}
+
+.footer .site-info .info-links a {
+  display: inline-block;
+}
+
+.footer .site-info .info-links img {
+  width: auto;
+  height: 28px;
+  display: block;
+}
+
+/* footer安全证书部分 */
+.footer .site-info .info-links .safe-auth {
+  position: relative;
+  margin-left: 2px;
+  height: 28px;
+  width: 100px;
+}
+
+.footer .site-info .info-links .safe-auth img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.footer .site-info .info-links .safe-auth img:nth-child(1) {
+  animation: safe-auth-switch 6s infinite;
+}
+
+.footer .site-info .info-links .safe-auth img:nth-child(2) {
+  animation: safe-auth-switch 6s 3s infinite;
+}
+
+@keyframes safe-auth-switch {
+  0% {
+    visibility: visible;
+  }
+
+  50% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
+/* slogan部分 */
+.footer .site-info .slogan {
+  clear: both;
+  margin: 30px auto 0;
+  width: 100%;
+  height: 19px;
+  background: url(../images/footer/slogan.png) no-repeat center 0;
+}
+
+/* footer部分结束 */
+
+/* 侧边工具栏部分开始 */
+
+/* 侧边工具栏切换媒体查询 */
+#home-tool-bar-large {
+  display: none;
+}
+
+#home-tool-bar-small {
+  display: none;
+}
+
+@media (min-width:1461px) {
+  #home-tool-bar-large {
+    display: block;
+  }
+}
+
+@media (min-width:1301px) and (max-width:1460px) {
+  #home-tool-bar-small {
+    display: block;
+  }
+}
+
+@media(max-width:1300px) {
+  #home-tool-bar-small {
+    display: block;
+    left: auto;
+    right: 0;
+    margin: 0;
+  }
+}
+
+/* 较大侧边工具栏样式 */
+.home-tool-bar-large {
+  position: fixed;
+  bottom: 70px;
+  right: 0;
+  z-index: 110;
+}
+
+.home-tool-bar .item {
+  display: block;
+  position: relative;
+  width: 82px;
+  height: 90px;
+  margin-top: -1px;
+  background-color: #fff;
+  border: 1px solid #f5f5f5;
+  text-align: center;
+}
+
+.home-tool-bar .item.back-to-top {
+  margin-top: 14px;
+}
+
+.home-tool-bar .item .icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 8px;
+  padding-top: 18px;
+}
+
+.home-tool-bar .item .icon img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  transition: opacity .3s;
+}
+
+.home-tool-bar .item .text {
+  color: #757575;
+  transition: color .3s;
+}
+
+.home-tool-bar .item .icon img.static {
+  opacity: 1;
+}
+
+.home-tool-bar .item .icon img.hover {
+  opacity: 0;
+}
+
+.home-tool-bar .item:hover .icon img.static {
+  opacity: 0;
+}
+
+.home-tool-bar .item:hover .icon img.hover {
+  opacity: 1;
+}
+
+.home-tool-bar-large .item:hover .text {
+  color: #ff6700;
+}
+
+/* 手机APP盒子 */
+.home-tool-bar .item.item-first .app-content {
+  position: absolute;
+  left: -143px;
+  top: 0;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #f5f5f5;
+  transition: opacity .3s;
+  transform: translateZ(0);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.home-tool-bar .item.item-first:hover .app-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 手机APP盒子侧边小箭头 */
+.home-tool-bar-large .item.item-first .app-content::before,
+.home-tool-bar-large .item.item-first .app-content::after {
+  content: "";
+  position: absolute;
+  top: 21%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  overflow: hidden;
+}
+
+.home-tool-bar-large .item.item-first .app-content::before {
+  border-left-color: #f5f5f5;
+  right: -19px;
+  z-index: 1;
+}
+
+.home-tool-bar-large .item.item-first .app-content::after {
+  border-left-color: #fff;
+  right: -18px;
+  z-index: 2;
+}
+
+.home-tool-bar .item.item-first .app-content img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 6px auto;
+}
+
+.home-tool-bar .item.item-first .app-content span {
+  display: block;
+  width: 82px;
+  margin: 14px auto 0;
+  color: #757575;
+  text-align: center;
+}
+
+/* 较小侧边工具栏样式 */
+.home-tool-bar-small {
+  position: fixed;
+  left: 50%;
+  margin-left: 613px;
+  bottom: 40px;
+  z-index: 110;
+}
+
+.home-tool-bar-small .item {
+  width: 25px;
+  height: 40px;
+}
+
+.home-tool-bar-small .item .icon {
+  width: 20px;
+  height: 20px;
+  padding-top: 10px;
+}
+
+.home-tool-bar-small .item .icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.home-tool-bar-small .item .text {
+  display: none;
+  position: absolute;
+  right: 36px;
+  top: 5px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  background-color: #fff;
+  border: 1px solid #f5f5f5;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.home-tool-bar-small .item:hover .text {
+  display: block;
+}
+
+/* 较小侧边工具栏文字右侧小箭头 */
+.home-tool-bar-small .item>span::before,
+.home-tool-bar-small .item>span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  overflow: hidden;
+}
+
+.home-tool-bar-small .item>span::before {
+  border-left-color: #f5f5f5;
+  right: -13px;
+  z-index: 1;
+}
+
+.home-tool-bar-small .item>span::after {
+  border-left-color: #fff;
+  right: -12px;
+  z-index: 2;
+}
+
+/* 较小侧边工具栏手机APP右侧小箭头 */
+.home-tool-bar-small .item.item-first .app-content::before,
+.home-tool-bar-small .item.item-first .app-content::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  overflow: hidden;
+}
+
+.home-tool-bar-small .item.item-first .app-content::before {
+  border-left-color: #f5f5f5;
+  right: -13px;
+  z-index: 1;
+}
+
+.home-tool-bar-small .item.item-first .app-content::after {
+  border-left-color: #fff;
+  right: -12px;
+  z-index: 2;
+}
+
+/* 侧边工具栏部分结束 */
