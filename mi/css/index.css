@@ -395,11 +395,17 @@ input[type="search"]::-webkit-search-cancel-button {
   border-color: #b0b0b0;
 }
 
+.site-header .header-search .search-form .search-text:focus,
+.site-header .header-search .search-form .search-text:focus~.search-btn {
+  border-color: #ff6700;
+}
+
 .site-header .header-search .search-btn:hover {
   background: #ff6700;
   color: #fff;
   border-color: #ff6700;
 }
+
 
 /* 第二级导航栏结束 */
 /* header部分结束 */
