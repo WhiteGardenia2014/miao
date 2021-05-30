@@ -767,6 +767,12 @@ input[type="search"]::-webkit-search-cancel-button {
 .home-hero .ad-row .ad-rightside ul.home-promo-list li {
   width: 316px;
   height: 170px;
+  transition: box-shadow .2s linear;
+}
+
+.home-hero .ad-row .ad-rightside ul.home-promo-list li:hover {
+  z-index: 2;
+  box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
 }
 
 .home-hero .ad-row .ad-rightside ul.home-promo-list li a {
