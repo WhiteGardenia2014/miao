@@ -1751,11 +1751,11 @@ input#peripheral-radio-2:checked~label.peripheral-label-2 span {
 }
 
 .footer .site-info .info-links .safe-auth img:nth-child(1) {
-  animation: safe-auth-switch 6s infinite;
+  animation: safe-auth-switch 6s linear infinite;
 }
 
 .footer .site-info .info-links .safe-auth img:nth-child(2) {
-  animation: safe-auth-switch 6s 3s infinite;
+  animation: safe-auth-switch 6s 3s linear infinite;
 }
 
 @keyframes safe-auth-switch {
