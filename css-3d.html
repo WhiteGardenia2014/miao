@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3d-cube</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .view {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100px;
+      height: 100px;
+      perspective: 650px;
+      transform-style: preserve-3d;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: 3s;
+      animation: move 15s linear infinite;
+    }
+
+    .box:hover {
+      /* transform: translateZ(280px); */
+      animation-play-state: paused;
+    }
+
+    .cube {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      transform-style: preserve-3d;
+      /* transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); */
+      animation: rotate3d 30s linear infinite;
+    }
+
+    .cube:hover div {
+      left: 12px;
+      top: 12px;
+      width: 76px;
+      height: 76px;
+      line-height: 76px;
+      opacity: 0.6;
+      border-radius: 25px;
+    }
+
+    .cube:hover i[class$="line"] {
+      visibility: visible;
+      opacity: 0.6;
+    }
+
+    .cube>div {
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      border: 2px #9b9b9b solid;
+      box-shadow: inset 0 0 15px 4px rgba(209, 209, 209, 0.5);
+      border-radius: 15px;
+
+      transition: all 3s;
+    }
+
+    .front {
+      transform: translateZ(50px);
+      background-color: #E52222bb;
+    }
+
+    .back {
+      transform: translateZ(-50px) rotateY(180deg);
+      background-color: #D5E522bb;
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(50px);
+      background-color: #26E522bb;
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(50px);
+      background-color: #22E5E5bb;
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(50px);
+      background-color: #2235E5bb;
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(50px);
+      background-color: #BE22E5bb;
+    }
+
+    @keyframes rotate3d {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateX(1800deg) rotateY(2520deg) rotateZ(3960deg);
+      }
+    }
+
+    @keyframes move {
+      0% {
+        transform: rotate3d(1, 2, 3, 0deg) translateX(0px) translateY(0px) translateZ(0px);
+      }
+
+      25% {
+        transform: rotate3d(1, 2, 3, 180deg) translateX(150px) translateY(-150px) translateZ(100px);
+      }
+
+      50% {
+        transform: rotate3d(1, 2, 3, 360deg) translateX(0px) translateY(0px) translateZ(0px);
+      }
+
+      75% {
+        transform: rotate3d(1, 2, 3, 540deg) translateX(-150px) translateY(150px) translateZ(-100px);
+      }
+
+      100% {
+        transform: rotate3d(1, 2, 3, 720deg) translateX(0px) translateY(0px) translateZ(0px);
+      }
+    }
+
+    .cube i[class$="line"] {
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      top: 50px;
+      left: 25px;
+      width: 50px;
+      height: 0px;
+      border-width: 1px;
+      border-style: solid;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 3s;
+    }
+
+    .frontline {
+      transform: rotateY(90deg) translateX(-25px);
+      border-color: #E52222bb;
+    }
+
+    .backline {
+      transform: rotateY(90deg) translateX(25px);
+      border-color: #D5E522bb;
+    }
+
+    .leftline {
+      transform: translateX(-25px);
+      border-color: #26E522bb;
+    }
+
+    .rightline {
+      transform: translateX(25px);
+      border-color: #22E5E5bb;
+    }
+
+    .topline {
+      transform: rotateZ(90deg) translateX(-25px);
+      border-color: #2235E5bb;
+    }
+
+    .bottomline {
+      transform: rotateZ(90deg) translateX(25px);
+      border-color: #BE22E5bb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="view">
+    <div class="box">
+      <div class="cube">
+        <div class="top">top</div>
+        <i class="topline"></i>
+
+        <div class="bottom">bottom</div>
+        <i class="bottomline"></i>
+
+        <div class="left">left</div>
+        <i class="leftline"></i>
+
+        <div class="right">right</div>
+        <i class="rightline"></i>
+
+        <div class="front">front</div>
+        <i class="frontline"></i>
+
+        <div class="back">back</div>
+        <i class="backline"></i>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
