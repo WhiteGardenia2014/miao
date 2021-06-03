@@ -1,0 +1,580 @@
+@media (max-width:720px) {
+  html {
+    font-size: calc(10000vw / 720);
+  }
+}
+
+@media (min-width:720px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+html {
+  line-height: 1.15;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  font-family: Helvetica Neue, Tahoma, Arial, PingFangSC-Regular, Hiragino Sans GB, Microsoft Yahei, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  text-align: center;
+  user-select: none;
+  touch-action: manipulation;
+  text-size-adjust: none;
+  max-width: 720px;
+  margin: auto;
+  position: relative;
+}
+
+#app * {
+  box-sizing: inherit;
+  background-repeat: no-repeat;
+}
+
+/* header部分开始 */
+header {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f2f2f2;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+}
+
+/* 头部搜索栏 */
+.app-header {
+  width: 100%;
+  height: 0.84rem;
+  background: #f2f2f2;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header a {
+  width: 100%;
+  height: 100%;
+}
+
+.app-header-left,
+.app-header-right {
+  width: 1rem;
+  height: 0.6rem;
+}
+
+.app-header-left .logo,
+.app-header-right .user {
+  width: 0.6rem;
+  height: 100%;
+  margin: 0 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header-left .logo img {
+  display: block;
+  width: 80%;
+  transform: translateZ(0px);
+}
+
+.app-header-right .user i.icon-user {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-image: url(../images/header/user.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+.app-header-middle {
+  flex: 1;
+  font-size: 0.3rem;
+}
+
+.app-header-middle .search {
+  width: 100%;
+  height: 0.62rem;
+  background-color: #fff;
+  border-radius: 0.04rem;
+  border: 1px solid #e5e5e5;
+}
+
+.app-header-middle .search a {
+  color: rgba(0, 0, 0, .3);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.app-header-middle .search i.icon-search {
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-image: url(../images/header/search.png);
+  background-size: 0.4rem 0.4rem;
+  background-position: center center;
+}
+
+/* 头部导航栏 */
+.nav {
+  position: relative;
+  width: 100%;
+  background: #f2f2f2;
+  font-size: .26rem;
+  white-space: nowrap;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.nav .nav-item {
+  padding: 0 .25rem;
+}
+
+.nav .nav-item-last {
+  width: .75rem;
+  height: .5rem;
+  line-height: .55rem;
+  background-color: #f2f2f2;
+  vertical-align: bottom;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.nav .nav-item span {
+  display: inline-block;
+  line-height: .55rem;
+  color: rgb(116, 116, 116);
+  border-bottom: 2px solid transparent;
+}
+
+.nav .nav-item span.current-item {
+  color: rgb(237, 91, 0);
+  border-color: rgb(237, 91, 0);
+}
+
+.nav .icon-arrow-down {
+  display: block;
+  width: 0.5rem;
+  height: 0.4rem;
+  background-image: url(../images/header/icon-arrow-down.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+/* header部分结束 */
+
+/* body部分开始 */
+.body {
+  position: absolute;
+  top: 1.41rem;
+  left: 0;
+  right: 0;
+  padding-bottom: 1rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* banner部分开始 */
+.banner {
+  position: relative;
+  width: 7.2rem;
+  height: 3.6rem;
+}
+
+.slideshow,
+.slideshow .banner-list,
+.slideshow .banner-list a,
+.slideshow .banner-list a img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slideshow .swiper-button-list {
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  width: 100%;
+  height: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-button-list .swiper-button-item {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 0 5px;
+  z-index: 2;
+  opacity: 0.2;
+}
+
+.swiper-button-list .swiper-button-item.current-swiper-button-item {
+  opacity: 1;
+}
+
+/* banner部分结束 */
+
+/* 导航卡片部分开始 */
+.cell-container {
+  position: relative;
+  width: 100%;
+  height: 3.04rem;
+}
+
+.cell-container .cell-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell-list .cell-item {
+  width: 20%;
+  height: 50%;
+}
+
+.cell-list .cell-item a,
+.cell-list .cell-item a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 导航卡片部分结束 */
+
+.divider-line-grey {
+  height: 0.16rem;
+  background-color: rgb(245, 245, 245);
+}
+
+.divider-line-white {
+  height: 0.0666667rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.divider-line-thin {
+  height: 0.02rem;
+  background-color: rgb(206, 206, 206);
+}
+
+.divider-line-px4 {
+  height: 0.04rem;
+  background-color: rgb(245, 245, 245);
+}
+
+/* 主要商品广告盒子 */
+.main-goods {
+  position: relative;
+  width: 100%;
+  height: 5.08rem;
+}
+
+.main-goods-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.main-goods-container .main-goods-item {
+  width: 3.58rem;
+  height: 2.52rem;
+}
+
+.main-goods-container .main-goods-item.main-goods-item-big {
+  width: 3.58rem;
+  height: 5.08rem;
+}
+
+.main-goods-container .main-goods-item a,
+.main-goods-container .main-goods-item a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 热销盒子 */
+.sellhot {
+  position: relative;
+  width: 100%;
+  height: 4.4rem;
+}
+
+.sellhot a,
+.sellhot a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sellhot.sell-good {
+  height: 2.8rem;
+}
+
+/* 主体双栏盒子 */
+.list-two-box {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 0.12rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-two-box .goods-container {
+  width: 3.44rem;
+  position: relative;
+}
+
+.list-two-box .goods-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.list-two-box .goods-container a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.list-two-box .goods-container a div.img {
+  position: relative;
+  width: 3.44rem;
+  height: 2.8rem;
+}
+
+.list-two-box .goods-container a div.tag2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* 双栏盒子下方文字信息 */
+.list-two-box .goods-container .info {
+  padding: .2rem .27rem;
+  background-color: #fff;
+  text-align: center;
+  font-size: 0;
+}
+
+.list-two-box .info .name {
+  font-size: .28rem;
+  color: rgba(0, 0, 0, .87);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-two-box .info .brief {
+  margin-top: .06rem;
+  font-size: .22rem;
+  line-height: .3rem;
+  color: rgba(0, 0, 0, .54);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-two-box .info .price {
+  font-size: .28rem;
+  color: #ea625b;
+  height: 1.5em;
+  line-height: 1.5em;
+  position: relative;
+  display: inline-block;
+  padding-left: .5em;
+}
+
+.list-two-box .info .price::before {
+  content: "\a5";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: .76em;
+  text-decoration: none;
+}
+
+.list-two-box .info .price span {
+  display: inline-block;
+  margin-left: .04rem;
+  font-size: .2rem;
+}
+
+.list-two-box .info .price .old {
+  display: inline-block;
+  margin: 0 .1rem;
+  font-size: .22rem;
+  color: rgba(0, 0, 0, .54);
+}
+
+.list-two-box .info .price .old i {
+  font-style: normal;
+  text-decoration: line-through;
+}
+
+.list-two-box .info .buybtn {
+  width: 2rem;
+  background: #ea625b;
+  border-radius: .05rem;
+  text-align: center;
+  color: #fff;
+  font-size: .24rem;
+  padding: .16rem 0;
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.body .ti {
+  color: rgba(0, 0, 0, .6);
+  height: 1rem;
+  line-height: 1rem;
+  font-size: .28rem;
+  text-align: center;
+}
+
+/* 卡片商品盒子 */
+.body .goods-card-box {
+  width: 100%;
+  height: 4.8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-card-container {
+  width: 3.58rem;
+  height: 4.8rem;
+}
+
+.goods-card-container a,
+.goods-card-container a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.body .about-mi {
+  width: 100%;
+  height: 1.06rem;
+}
+
+.body .about-mi a,
+.body .about-mi a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* body部分结束 */
+
+/* footer部分开始 */
+footer {
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: #fff;
+  box-shadow: 0 3px 14px 2px rgb(0 0 0 / 12%);
+}
+
+.nav-footer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-footer .nav-footer-item {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-footer .nav-footer-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+}
+
+.nav-footer .nav-footer-item a.current-page {
+  color: #ff6700;
+}
+
+.nav-footer .nav-footer-item a i {
+  display: block;
+  width: .4rem;
+  height: .4rem;
+  margin: 0 auto .1rem;
+}
+
+.nav-footer .nav-footer-item a span {
+  font-size: 0.22rem;
+}
+
+.nav-footer .icon-home {
+  background-image: url(../images/footer/icon-home.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+.nav-footer .icon-category {
+  background-image: url(../images/footer/icon-category.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+.nav-footer .icon-star {
+  background-image: url(../images/footer/icon-star.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+.nav-footer .icon-cart {
+  background-image: url(../images/footer/icon-cart.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+.nav-footer .icon-user {
+  background-image: url(../images/footer/icon-user.png);
+  background-size: 0.4rem 0.4rem;
+}
+
+/* footer部分结束 */
+
+.back-to-top {
+  position: fixed;
+  z-index: 900;
+  bottom: 1.4rem;
+  right: .26rem;
+}
+
+.back-to-top a,
+.back-to-top a img {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+}
