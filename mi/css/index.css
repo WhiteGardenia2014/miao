@@ -1009,19 +1009,19 @@ input#seckill-3:checked~.slide-row .slide-row-list {
   transform: translate3d(-1488px, 0px, 0px);
 }
 
-input#seckill-1:checked~.label-page-1,
+/* input#seckill-1:checked~.label-page-1,
 input#seckill-2:checked~.label-page-2,
 input#seckill-3:checked~.label-page-3 {
   display: block;
-}
+} */
 
 /* 滑动栏左右滑块按钮部分 */
 
-.home-main .box-bd .slide-row-box .label-page-1,
+/* .home-main .box-bd .slide-row-box .label-page-1,
 .home-main .box-bd .slide-row-box .label-page-2,
 .home-main .box-bd .slide-row-box .label-page-3 {
   display: none;
-}
+} */
 
 .home-main .box-bd .slide-row-box .slide-row-label-left,
 .home-main .box-bd .slide-row-box .slide-row-label-right {
@@ -1038,6 +1038,7 @@ input#seckill-3:checked~.label-page-3 {
   color: #b0b0b0;
   text-align: center;
   cursor: pointer;
+  opacity: 1;
   z-index: 10;
 }
 
@@ -1053,6 +1054,11 @@ input#seckill-3:checked~.label-page-3 {
 
 .home-main .box-bd .slide-row-box .slide-row-label-right {
   right: 0px;
+}
+
+.home-main .xm-seckill-box .box-bd .slide-row-box .slide-row-label-disabled {
+  color: #e0e0e0;
+  cursor: default;
 }
 
 /* 小米秒杀盒子结束 */
