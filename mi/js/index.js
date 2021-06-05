@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+  //轮播图自动播放功能
   var slideshow = document.querySelector('.home-hero .slideshow');
   var slideshow_radios = slideshow.querySelectorAll('.slideshow>.input-radio');
   var slideshow_num = 0;
@@ -121,15 +122,72 @@ window.addEventListener('load', function () {
 
   // 主体商品双栏卡片盒子切换内容功能
   var home_main_labels = document.querySelectorAll('.home-main .home-main-label');
-  var home_main_radios = document.querySelectorAll('.home-main .home-main-radio');
   var radio_id;
-  console.log(home_main_labels);
-  console.log(home_main_radios);
   for (var i = 0; i < home_main_labels.length; i++) {
     home_main_labels[i].addEventListener('mouseenter', function () {
       radio_id = "#" + this.getAttribute('for');
-      console.log(radio_id);
-      document.querySelector('' + radio_id + '').checked = true;
+      document.querySelector(radio_id).checked = true;
     });
   }
+
+  //小米秒杀盒子倒计时部分
+  var hour = document.getElementById('count-down-hour');
+  var minute = document.getElementById('count-down-minute');
+  var second = document.getElementById('count-down-second');
+  var countDown_desc = document.getElementById('count-down-desc')
+
+  function countDown(endTime) {
+    var nowTime = new Date();
+    var times = (endTime - nowTime) / 1000;
+    var h = parseInt(times / 60 / 60 % 24);
+    h = h < 10 ? '0' + h : h;
+    hour.innerHTML = h;
+    var m = parseInt(times / 60 % 60);
+    m = m < 10 ? '0' + m : m;
+    minute.innerHTML = m;
+    var s = parseInt(times % 60);
+    s = s < 10 ? '0' + s : s;
+    second.innerHTML = s;
+  }
+
+  function setTime() {
+    var nowTime = new Date();
+    var year = nowTime.getFullYear();
+    var month = nowTime.getMonth() + 1;
+    var day = nowTime.getDate();
+    var h = nowTime.getHours();
+    var inputTime = ("" + year + "-" + month + "-" + day + " 20:00:00");
+    var endTime = new Date(inputTime);
+    if (h < 12 || h >= 20) {
+      countDown_desc.innerHTML = "本场已结束";
+      hour.innerHTML = '00';
+      minute.innerHTML = '00';
+      second.innerHTML = '00';
+    } else {
+      countDown(endTime);
+    }
+  }
+
+  setTime();
+  setInterval(setTime, 1000);
+
+  //侧边栏回到顶部模块隐藏、显示功能
+  var home_main = document.querySelector('.home-main');
+  var backToTop_large = document.getElementById('back-to-top-large')
+  var backToTop_small = document.getElementById('back-to-top-small')
+  var main_top = home_main.offsetTop;
+  document.addEventListener('scroll', function () {
+    if (window.pageYOffset >= main_top) {
+      backToTop_large.style.display = "block";
+      backToTop_small.style.display = "block";
+    } else {
+      backToTop_large.style.display = "none";
+      backToTop_small.style.display = "none";
+    }
+  });
+
+  var nav_slideDown = document.querySelector('.nav-slide-down');
+  nav_slideDown.addEventListener('mouseenter', function () {
+    nav_slideDown.click();
+  })
 })
