@@ -188,6 +188,6 @@ window.addEventListener('load', function () {
 
   var nav_slideDown = document.querySelector('.nav-slide-down');
   nav_slideDown.addEventListener('mouseenter', function () {
-    nav_slideDown.click();
+    document.querySelector("#search").blur();
   })
 })
