@@ -979,14 +979,17 @@
 </script>
 
 <script id="ch0105/38" type="x">
-  var n = Number(prompt('请输入n'))
-  for (i = n; i > 0; i--) {
+  var m = Number(prompt('请输入组数'))
+  for (k = 0; k < m; k++) {
+    var n = Number(prompt('请输入n'))
+    for (i = n; i > 0; i--) {
+      var a = Number(prompt('请输入c'))
+      console.log(a * i);
+    }
     var a = Number(prompt('请输入c'))
-    console.log(a * i);
-  }
-  var a = Number(prompt('请输入c'))
-  if (n == 0) {
-    console.log(0);
+    if (n == 0) {
+      console.log(0);
+    }
   }
 </script>
 
