@@ -1105,3 +1105,245 @@
   }
   console.log(sum);
 </script>
+
+
+
+
+
+
+
+
+
+
+
+<script id="narcissistic" type="x">
+  //narcissistic: 输入一个数，判断是否是水仙花数
+  
+  let n = Number(prompt("请输入n"))
+  console.log(isNarcissistic(n))
+  
+  function isNarcissistic(n) {
+    let array = String(n).split("")
+    let num = 0
+    for (let i = 0; i < array.length; i++) {
+      num += Math.pow(array[i], array.length)
+    }
+    if (num == n) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>
+
+<script id="narcissistics" type="x">
+  //narcissistics: 输出10000以内的水仙花数
+
+  let n = Number(prompt("请输入n"))
+  narcissistics(n);
+
+  function narcissistics(n) {
+    for (let i = 1; i <= n; i++) {
+      if (isNarcissistic(i)) {
+        console.log(i);
+      }
+    }
+  }
+
+  function isNarcissistic(n) {
+    let array = String(n).split("")
+    let num = 0
+    for (let i = 0; i < array.length; i++) {
+      num += Math.pow(array[i], array.length)
+    }
+    if (num == n) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>
+
+<script id="palindrom" type="x">
+  //palindrom: 判断一个数是否是回文数字
+
+  let n = Number(prompt("请输入n"))
+  console.log(isPalindrome(n));
+
+  // function isPalindrome(n) {
+  //   let array = String(n).split("")
+  //   for (let i = 0; i < Math.floor(array.length / 2); i++) {
+  //     if (array[i] != (array[array.length - 1 - i])) {
+  //       return false
+  //     }
+  //   }
+  //   return true
+  // }
+
+  function isPalindrome(n) {
+    return String(n).split("").reverse().join("") == String(n)
+  }
+
+</script>
+
+
+<script id="weekday" type="x">
+  //weekday: 输入年份与月份，输出这个月的第一天是周几
+  let y = Number(prompt("请输入年份"))
+  let m = Number(prompt("请输入月份"))
+  console.log(weekday(y, m));
+
+  function weekday(y, m) {
+    if (m == 1 || m == 2) {
+      m += 12;
+      y--;
+    }
+    let w = (1 + 2 * m + Math.trunc(3 * (m + 1) / 5) + y + Math.trunc(y / 4) - Math.trunc(y / 100) + Math.trunc(y / 400) + 1) % 7
+    return w
+  }
+</script>
+
+<script id="complete-number" type="x">
+  //complete-number: 判断一个数是否是完全数
+
+  let n = Number(prompt("请输入n"))
+  console.log(isCompleteNumber(n));
+
+  function isCompleteNumber(n) {
+    let num = 0
+    for (let i = 1; i <= n / 2; i++) {
+      if (n % i == 0) {
+        num += i
+      }
+    }
+    if (num == n) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>
+
+<script id="complete-numbers" type="x">
+  //complete-numbers: 输出1000以内的完全数
+
+  let n = Number(prompt("请输入n"))
+  completeNumbers(n);
+
+  function completeNumbers(n) {
+    for (let i = 1; i <= n; i++) {
+      if (isCompleteNumber(i)) {
+        console.log(i);
+      }
+    }
+  }
+
+  function isCompleteNumber(n) {
+    let num = 0
+    for (let i = 1; i <= n / 2; i++) {
+      if (n % i == 0) {
+        num += i
+      }
+    }
+    if (num == n) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>
+
+<script id="prime" type="x">
+  //prime: 判断一个数是否是素数
+
+  let n = Number(prompt("请输入n"))
+  console.log(isPrime(n));
+
+  function isPrime(n) {
+    if (n == 1) {
+      return false
+    }
+    let sqrt_n = Math.sqrt(n)
+    for (let i = 2; i <= sqrt_n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+</script>
+
+<script id="primes" type="x">
+  //primes: 输出1000以内的素数
+
+  let x = Number(prompt("请输入x"))
+  primes(x);
+
+  function primes(x) {
+    for (let i = 1; i <= x; i++) {
+      if (isPrime(i)) {
+        console.log(i);
+      }
+    }
+  }
+
+  function isPrime(n) {
+    if (n == 1) {
+      return false
+    }
+    let sqrt_n = Math.sqrt(n)
+    for (let i = 2; i <= sqrt_n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+</script>
+
+<script id="lcf&lcm" type="x">
+  //lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
+
+  let m = Number(prompt("请输入m"))
+  let n = Number(prompt("请输入n"))
+  console.log("最大公约数", largestCommonFactor(m, n));
+  console.log("最小公倍数", leastCommonMultiple(m, n));
+
+  function leastCommonMultiple(m, n) {
+    let lcf = largestCommonFactor(m, n)
+    return m * n / lcf
+  }
+
+  function largestCommonFactor(m, n) {
+    if (m < n) {
+      let x = n
+      n = m
+      m = x
+    }
+    let mol = 1
+    while (mol) {
+      mol = m % n
+      m = n
+      n = mol
+    }
+    return m
+  }
+</script>
+
+<script id="sqrt" type="x">
+  //sqrt: 求一个数的平方根 
+
+  let n = Number(prompt("请输入n"))
+  console.log(sqrt(n));
+
+  function sqrt(n) {
+    let x = 1
+    let delta = 1
+
+    while (delta > 1 / 10000000000) {
+      x = (x + n / x) / 2
+      delta = Math.abs(n - x * x)
+    }
+    return x
+  }
+</script>
