@@ -29,9 +29,18 @@ var whitegardenia2014 = function () {
       return iteratee
     }
     if (isString(iteratee)) {
-      return function (item) {
-        return item[iteratee]
+      let iteratee = iteratee.trim()
+      let pathArray = iteratee.split(".")
+      if (pathArray.length == 1) {
+        return function (item) {
+          return item[iteratee]
+        }
+      } else {
+        return function (item) {
+          return pathArray.reduce((prev, cur) => prev[cur], item)
+        }
       }
+
     }
   }
 
@@ -227,6 +236,31 @@ var whitegardenia2014 = function () {
     return Object.values(object)
   }
 
+  // 深度对比
+  function isEqual(a, b) {
+    if (a === b) {
+      return true
+    }
+    if (typeof a !== typeof b) {
+      return false
+    }
+    if (isObject(a)) {
+      if (Object.keys(a).length != Object.keys(b).length) {
+        return false
+      }
+      for (let key in a) {
+        if (key in b) {
+          if (!isEqual(a[key], b[key])) {
+            return false
+          }
+        } else {
+          return false
+        }
+      }
+      return true
+    }
+  }
+
 
   return {
     chunk: chunk,
@@ -248,5 +282,6 @@ var whitegardenia2014 = function () {
     isString: isString,
     keys: keys,
     values: values,
+    isEqual: isEqual,
   }
 }()
