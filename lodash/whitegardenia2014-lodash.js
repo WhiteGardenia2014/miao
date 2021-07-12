@@ -93,15 +93,18 @@ whitegardenia2014 = function () {
   }
 
 
+  function groupBy(array, )
+
+
+
   return {
     chunk: chunk,
     compact: compact,
     difference: difference,
-    differenceBy: differenceBy,
-    drop: drop,
     flattenDeep: flattenDeep,
     flattenDepth: flattenDepth,
     uniq: uniq,
     uniqBy: uniqBy,
+    groupBy: groupBy,
   }
 }()
