@@ -1,5 +1,28 @@
 var whitegardenia2014 = function () {
 
+  //***** 类型判断 *****//
+
+  // 判断 value 是不是 function
+  function isFunction(value) {
+    return typeof value === "function"
+  }
+
+  // 判断 value 是不是 ObjectLike，如果 typeof value 为 "object" 并且 value 不是 null，那么 value 是 ObjectLike
+  function isObjectLike(value) {
+    return typeof value === "object" && value !== null
+  }
+
+  // 判断 value 是不是Object，(e.g. arrays, functions, objects, regexes, new Number(0), and new String(''))
+  function isObject(value) {
+    return value !== null && (typeof value === "object" || typeof value === "function")
+  }
+
+
+  // 对 iteratee 进行类型转换
+  function transType(iteratee) {
+
+  }
+
   // array 按照 size 进行分组
   function chunk(array, size = 1) {
     if (!array) {
@@ -51,8 +74,8 @@ var whitegardenia2014 = function () {
     return res
   }
 
-
-  function uniqBy(array, predicate) {
+  // 依赖 iteratee 的结果，对 array 数组去重
+  function uniqBy(array, iteratee) {
     let myset = new Set()
     let res = []
     for (let value of array) {
@@ -114,7 +137,7 @@ var whitegardenia2014 = function () {
   }
 
   // forEach 遍历方法
-  function foreach(collection, iteratee) {
+  function forEach(collection, iteratee) {
     let fun = Array.isArray(collection) ? arrayEach : objectEach;
     return fun(collection, iteratee)
   }
@@ -129,6 +152,9 @@ var whitegardenia2014 = function () {
     flattenDepth: flattenDepth,
     uniq: uniq,
     uniqBy: uniqBy,
-    foreach: foreach,
+    forEach: forEach,
+    isObject: isObject,
+    isObjectLike: isObjectLike,
+    isFunction: isFunction,
   }
 }()
