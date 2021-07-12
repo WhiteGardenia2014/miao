@@ -1,4 +1,4 @@
-whitegardenia2014 = function () {
+var whitegardenia2014 = function () {
 
 
   function chunk(array, size = 1) {
@@ -93,8 +93,6 @@ whitegardenia2014 = function () {
   }
 
 
-  function groupBy(array, )
-
 
 
   return {
@@ -105,6 +103,5 @@ whitegardenia2014 = function () {
     flattenDepth: flattenDepth,
     uniq: uniq,
     uniqBy: uniqBy,
-    groupBy: groupBy,
   }
 }()
