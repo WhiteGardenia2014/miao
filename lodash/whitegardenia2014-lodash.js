@@ -33,10 +33,17 @@ whitegardenia2014 = function () {
   }
 
 
+  function difference(array, ...values) {
+    let dif = [].concat(...values)
+    return array.filter(item => !dif.includes(item))
+  }
 
 
   return {
     chunk: chunk,
     compact: compact,
+    difference: difference,
+    differenceBy: differenceBy,
+    drop: drop,
   }
 }()
