@@ -103,7 +103,12 @@ var whitegardenia2014 = function () {
     return res
   }
 
-  //高维数组展开
+  //高维数组展开一层
+  function flatten(array) {
+    return [].concat(...array)
+  }
+
+  //高维数组展开成一维数组
   function flattenDeep(array) {
     let result = []
     for (let i = 0; i < array.length; i++) {
@@ -157,16 +162,40 @@ var whitegardenia2014 = function () {
     return fun(collection, iteratee)
   }
 
+  // 依赖 iteratee 的结果，对 collection 进行分组
+  function groupBy(collection, iteratee) {
+    let fun = transType(iteratee)
+    return collection.reduce((map, item) => {
+      let key = fun(item)
+      if (!(key in map)) {
+        map[key] = []
+      }
+      map[key].push(item)
+      return map
+    }, {})
+  }
 
+  // 对 collection 中的元素执行 iteratee ，得到的值作为键，元素作为值，建立新的映射表
+  function keyBy(collection, iteratee) {
+    let fun = transType(iteratee)
+    return collection.reduce((map, item) => {
+      let key = fun(item)
+      map[key] = item
+      return map
+    }, {})
+  }
 
   return {
     chunk: chunk,
     compact: compact,
     difference: difference,
+    flatten: flatten,
     flattenDeep: flattenDeep,
     flattenDepth: flattenDepth,
     uniq: uniq,
     uniqBy: uniqBy,
+    groupBy: groupBy,
+    keyBy: keyBy,
     forEach: forEach,
     isObject: isObject,
     isObjectLike: isObjectLike,
