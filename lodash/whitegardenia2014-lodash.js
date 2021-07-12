@@ -2,7 +2,12 @@ var whitegardenia2014 = function () {
 
   //***** 类型判断 *****//
 
-  // 判断 value 是不是 function
+  // 判断 value 是不是 String
+  function isString(value) {
+    return typeof value === "string"
+  }
+
+  // 判断 value 是不是 Function
   function isFunction(value) {
     return typeof value === "function"
   }
@@ -22,6 +27,8 @@ var whitegardenia2014 = function () {
   function transType(iteratee) {
 
   }
+
+  //***** Array *****//
 
   // array 按照 size 进行分组
   function chunk(array, size = 1) {
@@ -156,5 +163,6 @@ var whitegardenia2014 = function () {
     isObject: isObject,
     isObjectLike: isObjectLike,
     isFunction: isFunction,
+    isString: isString,
   }
 }()
