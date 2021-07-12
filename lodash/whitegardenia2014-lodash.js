@@ -204,6 +204,15 @@ var whitegardenia2014 = function () {
     }, {})
   }
 
+  // 返回一个由对象的可枚举属性名组成的数组
+  function keys(object) {
+    return Object.keys(object)
+  }
+
+  // 返回一个由对象的可枚举属性值组成的数组
+  function values(object) {
+    return Object.values(object)
+  }
 
 
   return {
@@ -223,5 +232,7 @@ var whitegardenia2014 = function () {
     isObjectLike: isObjectLike,
     isFunction: isFunction,
     isString: isString,
+    keys: keys,
+    values: values,
   }
 }()
