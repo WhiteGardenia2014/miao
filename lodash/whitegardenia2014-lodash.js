@@ -269,6 +269,22 @@ var whitegardenia2014 = function () {
     return val !== val
   }
 
+  // 判断 val 是不是 null
+  function isNull(val) {
+    return val === null
+  }
+
+  // 判断 val 是不是 undefined
+  function isUndefined(val) {
+    return val === undefined
+  }
+
+  // 判断 val 是不是 null 或者 undefined
+  function isNil(val) {
+    return val === null || val === undefined
+  }
+
+
   return {
     chunk: chunk,
     compact: compact,
@@ -289,6 +305,9 @@ var whitegardenia2014 = function () {
     isString: isString,
     isEqual: isEqual,
     isNaN: isNaN,
+    isNull: isNull,
+    isUndefined: isUndefined,
+    isNil: isNil,
     keys: keys,
     values: values,
   }
