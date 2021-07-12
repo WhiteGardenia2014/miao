@@ -1,6 +1,6 @@
 var whitegardenia2014 = function () {
 
-
+  // array 按照 size 进行分组
   function chunk(array, size = 1) {
     if (!array) {
       return []
@@ -18,7 +18,7 @@ var whitegardenia2014 = function () {
     return res
   }
 
-
+  // 去掉 array 中的 falsy 值
   function compact(array) {
     if (!array) {
       return []
@@ -32,13 +32,13 @@ var whitegardenia2014 = function () {
     return res
   }
 
-
+  // 去掉 array 中，values内的值
   function difference(array, ...values) {
     let dif = [].concat(...values)
     return array.filter(item => !dif.includes(item))
   }
 
-
+  // array 数组去重
   function uniq(array) {
     let myset = new Set()
     let res = []
@@ -65,7 +65,7 @@ var whitegardenia2014 = function () {
     return res
   }
 
-
+  //高维数组展开
   function flattenDeep(array) {
     let result = []
     for (let i = 0; i < array.length; i++) {
@@ -74,7 +74,7 @@ var whitegardenia2014 = function () {
     return result
   }
 
-
+  //高维数组展开 depth 深度
   function flattenDepth(array, depth = 1) {
     if (depth == 0) {
       return array.slice()
@@ -92,6 +92,32 @@ var whitegardenia2014 = function () {
     return res
   }
 
+  //数组遍历方法
+  function arrayEach(array, iteratee) {
+    let length = array.length
+    for (let i = 0; i < length; i++) {
+      if (iteratee(array[i], i, array) === false) {
+        break
+      }
+    }
+    return array
+  }
+
+  //对象遍历方法
+  function objectEach(collection, iteratee) {
+    for (let key in collection) {
+      if (iteratee(collection[key], key, collection) === false) {
+        break
+      }
+    }
+    return collection
+  }
+
+  // forEach 遍历方法
+  function foreach(collection, iteratee) {
+    let fun = Array.isArray(collection) ? arrayEach : objectEach;
+    return fun(collection, iteratee)
+  }
 
 
 
@@ -103,5 +129,6 @@ var whitegardenia2014 = function () {
     flattenDepth: flattenDepth,
     uniq: uniq,
     uniqBy: uniqBy,
+    foreach: foreach,
   }
 }()
