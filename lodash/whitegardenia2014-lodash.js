@@ -67,9 +67,30 @@ whitegardenia2014 = function () {
 
 
   function flattenDeep(array) {
-
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      result = result.concat(Array.isArray(array[i]) ? flattenDeep(array[i]) : array[i])
+    }
+    return result
   }
 
+
+  function flattenDepth(array, depth = 1) {
+    if (depth == 0) {
+      return array.slice()
+    }
+    let res = []
+    for (let i = 0; i < array.length; i++) {
+      let item = array[i]
+      if (Array.isArray(item)) {
+        item = flattenDepth(item, depth - 1)
+        res = res.concat(item)
+      } else {
+        res.push(item)
+      }
+    }
+    return res
+  }
 
 
   return {
