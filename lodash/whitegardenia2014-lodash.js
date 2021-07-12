@@ -103,6 +103,19 @@ var whitegardenia2014 = function () {
     return res
   }
 
+  // 创建一个新数组，将 array 和剩下的值或数组拼接起来
+  function concat(array, ...values) {
+    let res = array.slice()
+    for (let item of values) {
+      if (Array.isArray(item)) {
+        res = res.concat(item)
+      } else {
+        res.push(item)
+      }
+    }
+    return res
+  }
+
   //高维数组展开一层
   function flatten(array) {
     return [].concat(...array)
@@ -222,6 +235,7 @@ var whitegardenia2014 = function () {
     flatten: flatten,
     flattenDeep: flattenDeep,
     flattenDepth: flattenDepth,
+    concat: concat,
     uniq: uniq,
     uniqBy: uniqBy,
     groupBy: groupBy,
