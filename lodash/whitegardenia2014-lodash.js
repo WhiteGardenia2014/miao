@@ -135,7 +135,7 @@ var whitegardenia2014 = function () {
     return res
   }
 
-  //数组遍历方法
+  //数组 forEach 方法
   function arrayEach(array, iteratee) {
     let length = array.length
     for (let i = 0; i < length; i++) {
@@ -146,7 +146,7 @@ var whitegardenia2014 = function () {
     return array
   }
 
-  //对象遍历方法
+  //对象 forEach 方法
   function objectEach(collection, iteratee) {
     for (let key in collection) {
       if (iteratee(collection[key], key, collection) === false) {
@@ -156,10 +156,29 @@ var whitegardenia2014 = function () {
     return collection
   }
 
-  // forEach 遍历方法
+  // forEach 遍历方法，可以通过显式的返回 false 退出遍历
   function forEach(collection, iteratee) {
     let fun = Array.isArray(collection) ? arrayEach : objectEach;
     return fun(collection, iteratee)
+  }
+
+  // map 遍历方法
+  function map(collection, iteratee) {
+    let predicate = transType(iteratee)
+    let res = []
+    if (Array.isArray(collection)) {
+      collection.forEach((item, index, collection) => {
+        res.push(predicate(item, index, collection))
+      })
+      return res
+    }
+    if (isObject(collection)) {
+      for (let key in collection) {
+        let value = collection[key]
+        res.push(predicate(value, key, collection))
+      }
+      return res
+    }
   }
 
   // 依赖 iteratee 的结果，对 collection 进行分组
@@ -185,6 +204,8 @@ var whitegardenia2014 = function () {
     }, {})
   }
 
+
+
   return {
     chunk: chunk,
     compact: compact,
@@ -197,6 +218,7 @@ var whitegardenia2014 = function () {
     groupBy: groupBy,
     keyBy: keyBy,
     forEach: forEach,
+    map: map,
     isObject: isObject,
     isObjectLike: isObjectLike,
     isFunction: isFunction,
