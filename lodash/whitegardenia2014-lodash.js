@@ -17,7 +17,7 @@ var whitegardenia2014 = function () {
     return typeof value === "object" && value !== null
   }
 
-  // 判断 value 是不是Object，(e.g. arrays, functions, objects, regexes, new Number(0), and new String(''))
+  // 判断 value 是不是 Object，(e.g. arrays, functions, objects, regexes, new Number(0), and new String(''))
   function isObject(value) {
     return value !== null && (typeof value === "object" || typeof value === "function")
   }
@@ -25,7 +25,14 @@ var whitegardenia2014 = function () {
 
   // 对 iteratee 进行类型转换
   function transType(iteratee) {
-
+    if (isFunction(iteratee)) {
+      return iteratee
+    }
+    if (isString(iteratee)) {
+      return function (item) {
+        return item[iteratee]
+      }
+    }
   }
 
   //***** Array *****//
@@ -75,8 +82,8 @@ var whitegardenia2014 = function () {
     for (let value of array) {
       if (!myset.has(value)) {
         res.push(value)
+        myset.add(value)
       }
-      myset.add(value)
     }
     return res
   }
@@ -84,13 +91,14 @@ var whitegardenia2014 = function () {
   // 依赖 iteratee 的结果，对 array 数组去重
   function uniqBy(array, iteratee) {
     let myset = new Set()
+    let fun = transType(iteratee)
     let res = []
     for (let value of array) {
-      let fea = predicate(value)
+      let fea = fun(value)
       if (!myset.has(fea)) {
         res.push(value)
+        myset.add(fea)
       }
-      myset.add(fea)
     }
     return res
   }
