@@ -125,6 +125,14 @@ var whitegardenia2014 = function () {
     return res
   }
 
+  // 在数组的 start 下标，和 end 下标之间，填充 value（不包括 end）
+  function fill(array, value, start = 0, end = array.length) {
+    for (let i = start; i < end; i++) {
+      array[i] = value
+    }
+    return array
+  }
+
   //高维数组展开一层
   function flatten(array) {
     return [].concat(...array)
@@ -293,6 +301,7 @@ var whitegardenia2014 = function () {
     flattenDeep: flattenDeep,
     flattenDepth: flattenDepth,
     concat: concat,
+    fill: fill,
     uniq: uniq,
     uniqBy: uniqBy,
     groupBy: groupBy,
