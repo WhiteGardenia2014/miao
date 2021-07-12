@@ -39,11 +39,48 @@ whitegardenia2014 = function () {
   }
 
 
+  function uniq(array) {
+    let myset = new Set()
+    let res = []
+    for (let value of array) {
+      if (!myset.has(value)) {
+        res.push(value)
+      }
+      myset.add(value)
+    }
+    return res
+  }
+
+
+  function uniqBy(array, predicate) {
+    let myset = new Set()
+    let res = []
+    for (let value of array) {
+      let fea = predicate(value)
+      if (!myset.has(fea)) {
+        res.push(value)
+      }
+      myset.add(fea)
+    }
+    return res
+  }
+
+
+  function flattenDeep(array) {
+
+  }
+
+
+
   return {
     chunk: chunk,
     compact: compact,
     difference: difference,
     differenceBy: differenceBy,
     drop: drop,
+    flattenDeep: flattenDeep,
+    flattenDepth: flattenDepth,
+    uniq: uniq,
+    uniqBy: uniqBy,
   }
 }()
