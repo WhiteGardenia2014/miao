@@ -261,6 +261,13 @@ var whitegardenia2014 = function () {
     }
   }
 
+  // 判断 val 是不是 NaN
+  function isNaN(val) {
+    if (isObject(val)) {
+      return val.valueOf() !== val.valueOf()
+    }
+    return val !== val
+  }
 
   return {
     chunk: chunk,
@@ -280,8 +287,9 @@ var whitegardenia2014 = function () {
     isObjectLike: isObjectLike,
     isFunction: isFunction,
     isString: isString,
+    isEqual: isEqual,
+    isNaN: isNaN,
     keys: keys,
     values: values,
-    isEqual: isEqual,
   }
 }()
