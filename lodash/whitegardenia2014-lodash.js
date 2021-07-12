@@ -29,7 +29,7 @@ var whitegardenia2014 = function () {
       return iteratee
     }
     if (isString(iteratee)) {
-      let iteratee = iteratee.trim()
+      iteratee = iteratee.trim()
       let pathArray = iteratee.split(".")
       if (pathArray.length == 1) {
         return function (item) {
