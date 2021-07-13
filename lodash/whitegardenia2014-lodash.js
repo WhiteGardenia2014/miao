@@ -252,7 +252,7 @@ var whitegardenia2014 = function () {
     if (typeof a !== typeof b) {
       return false
     }
-    if (isObject(a)) {
+    if (isObject(a) && isObject(b)) {
       if (Object.keys(a).length != Object.keys(b).length) {
         return false
       }
@@ -267,6 +267,7 @@ var whitegardenia2014 = function () {
       }
       return true
     }
+    return false
   }
 
   // 判断 val 是不是 NaN
