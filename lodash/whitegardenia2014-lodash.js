@@ -561,6 +561,50 @@ var whitegardenia2014 = function () {
     }
   }()
 
+  // stringifyJson 将 JS 对象转换为 JSON 字符串
+  function stringifyJson(value) {
+    // 转换数组类型
+    if (Array.isArray(value)) {
+      let str = "["
+      for (let i = 0; i < value.length; i++) {
+        str = str + stringify(value[i]) + ","
+      }
+      str = str.slice(0, -1) // 去掉最后一个逗号
+      str = str + "]"
+      return str
+    }
+
+    // 转换对象类型
+    if (typeof value == "object") {
+      let str = "{"
+      for (let key in value) {
+        let val = value[key]
+        str = str + '"' + key + '":' + stringify(val) + ","
+      }
+      str = str.slice(0, -1) // 去掉最后一个逗号
+      str = str + "}"
+      return str
+    }
+
+    // 转换数值类型
+    if (typeof value == "number") {
+      return String(value)
+    }
+
+    // 转换字符串类型
+    if (typeof value == "string") {
+      return '"' + value + '"' // 字符串两端要加上双引号
+    }
+
+    // 转换布尔类型
+    if (typeof value == "boolean") {
+      if (value) {
+        return "true"
+      } else {
+        return "false"
+      }
+    }
+  }
 
   return {
     chunk: chunk,
@@ -600,5 +644,6 @@ var whitegardenia2014 = function () {
     values: values,
     bind: bind,
     parseJson: parseJson,
+    stringifyJson: stringifyJson,
   }
 }()
