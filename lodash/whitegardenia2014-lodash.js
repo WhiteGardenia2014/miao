@@ -446,6 +446,121 @@ var whitegardenia2014 = function () {
     return val === null || val === undefined
   }
 
+  // parseJson 将 JSON 字符串转换为 JS 对象
+  var parseJson = function () {
+    // var str = `[1,"fooo",[1,2,3],{"a":1,"b":[1,2,3],"c":{"x":1,"yyy":false}},5,null]`
+    // var i = 0
+
+    return function parseJSON(input) {
+      // str 和 i 为函数内的全局变量
+      str = input
+      i = 0
+      return parseValue()
+    }
+
+    // 递归下降：解析表示递归结构的字符串
+    // 每个函数的作用都是从 i 开始解析出对应的内容并返回，并将 i 指向解析完成后的下一个位置，以供之后的函数继续解析
+
+    function parseValue() {
+      var c = str[i]
+
+      if (c == '[') {
+        return parseArray()
+      }
+      if (c == '{') {
+        return parseObject()
+      }
+      if (c == '"') {
+        return parseString()
+      }
+      if (c == 't') {
+        return parseTrue()
+      }
+      if (c == 'f') {
+        return parseFalse()
+      }
+      if (c == 'n') {
+        return parseNull()
+      }
+      return parseNumber()
+    }
+
+    // 从 i 指向的位置解析出一个 true，并将 i 指向 true 的下一个位置
+    function parseTrue() {
+      i += 4
+      return true
+    }
+
+    // 从 i 指向的位置解析出一个 false，并将 i 指向 false 的下一个位置
+    function parseFalse() {
+      i += 5
+      return false
+    }
+
+    // 从 i 指向的位置解析出一个 null，并将 i 指向 null 的下一个位置
+    function parseNull() {
+      i += 4
+      return null
+    }
+
+    // 从 i 指向的位置（此时为 "）解析出一个字符串，并将 i 指向字符串的下一个位置
+    function parseString() {
+      i++ // 跳过当前的双引号
+      var result = ''
+      while (str[i] !== '"') { // 没有遇到结束的双引号，就不断拼接字符串
+        result += str[i++]
+      }
+      i++ // 跳过最后一个双引号
+      return result
+    }
+
+    // 从 i 指向的位置解析出一个数值，并将 i 指向数值的下一个位置
+    function parseNumber() {
+      var numStr = ''
+      while (str[i] >= '0' && str[i] <= '9') { // 如果遇到的数字，就拼接到字符串中
+        numStr += str[i++]
+      }
+      return Number(numStr)
+    }
+
+    // 从 i 指向的位置（此时为 [）解析出一个数组，并将 i 指向数组的下一个位置
+    function parseArray() {
+      i++ // 跳过当前的 [
+      var result = []
+
+      while (str[i] !== ']') { // 如果遇到了 ] ，就退出循环
+        var val = parseValue() // 解析出一个值，并放入 result 中
+        result.push(val)
+
+        if (str[i] == ',') { // 如果遇到了逗号，就跳过这个逗号
+          i++
+        }
+      }
+      i++ // 跳过最后一个 ]
+      return result
+    }
+
+    // 从 i 指向的位置（此时为 {）解析出一个对象，并将 i 指向对象的下一个位置
+    function parseObject() {
+      i++ // 跳过当前的 {
+      var result = {}
+
+      while (str[i] !== '}') { // 如果遇到了 } ，就退出循环
+        var key = parseString() // 解析出一个字符串，作为 key
+        i++ // 跳过 key 后面的 :
+        var val = parseValue() // 解析出一个值，作为 val
+
+        result[key] = val // 将键值对添加到 result 中
+
+        if (str[i] == ',') { // 如果遇到了逗号，就跳过这个逗号
+          i++
+        }
+      }
+      i++ // 跳过最后一个 }
+      return result
+    }
+  }()
+
 
   return {
     chunk: chunk,
@@ -484,5 +599,6 @@ var whitegardenia2014 = function () {
     keys: keys,
     values: values,
     bind: bind,
+    parseJson: parseJson,
   }
 }()
