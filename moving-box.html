@@ -66,7 +66,6 @@
 </head>
 
 <body>
-  <!-- <div style="top:50px;left:50px;transform: translate3d(0px,0px,0px);"></div> -->
   <div class="container">
     <div class="title">
       <div class="text">上下左右键控制红色方块，WASD键控制蓝色方块，两者相遇，游戏结束</div>
@@ -148,7 +147,6 @@
       }
     }
 
-
     // 监听键盘抬起事件
     function keyupEvent(e) {
       // 如果抬起了右方向键，rightPress 标志置为 false，
@@ -225,8 +223,11 @@
     }
 
 
-    var lastTime = 0
+    document.addEventListener('keydown', keydownEvent)
+    document.addEventListener('keyup', keyupEvent)
 
+
+    var lastTime = 0
     // 更新运动动画
     function move(time) {
       var timediff = time - lastTime // 获取两帧之间的时间差 
@@ -308,36 +309,21 @@
       let topBoundary = redPosTop - redHeight
       let bottomBoundary = redPosTop + redHeight
 
-      console.log(leftBoundary, rightBoundary, topBoundary, bottomBoundary, bluePosTop, bluePosLeft)
+      // console.log(leftBoundary, rightBoundary, topBoundary, bottomBoundary, bluePosTop, bluePosLeft)
 
       // 判断蓝色方块是否碰撞红色方块
       if ((bluePosTop > topBoundary) && (bluePosTop < bottomBoundary)
         && (bluePosLeft < rightBoundary) && (bluePosLeft > leftBoundary)) {
         // console.log("yes")
-
-        document.removeEventListener('keydown', keydownEvent)
-        document.removeEventListener('keyup', keyupEvent)
-        reset()
-
-        // console.log(blueVx, blueVy);
         alert("抓住了")
         reset()
       }
-
-
-
-      // let str = div.style.transform
-      // let ary = str.slice(12).split(",").map(it => parseFloat(it))
-      // let x = ary[0] + dx
-      // let y = ary[1] + dy
-      // console.log(x, y)
-      // div.style.transform = `translate3d(${x}px,${y}px,0px)`
 
       requestAnimationFrame(move)
     }
     requestAnimationFrame(move)
 
-    // 重置方块位置
+    // 重置方块位置和初始状态
     function reset() {
       let boxHeight = box.clientHeight
       let boxWidth = box.clientWidth
@@ -367,16 +353,30 @@
       aPress = false
       sPress = false
       dPress = false
-
-      document.addEventListener('keydown', keydownEvent)
-      document.addEventListener('keyup', keyupEvent)
     }
 
-
+    // 为重置按钮绑定点击事件
     resetButtom.addEventListener('click', function () {
       reset()
     })
 
+    // 为窗口绑定 blur 事件，当窗口失去焦点时，将方块速度清空和按键标志清空
+    window.addEventListener('blur', function (e) {
+      redVx = 0
+      redVy = 0
+      blueVx = 0
+      blueVy = 0
+
+      leftPress = false
+      rightPress = false
+      upPress = false
+      downPress = false
+
+      wPress = false
+      aPress = false
+      sPress = false
+      dPress = false
+    })
 
   </script>
 </body>
