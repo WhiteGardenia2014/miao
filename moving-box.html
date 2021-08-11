@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      height: 100%;
+    }
+
+    .red {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      background-color: rgb(255, 89, 117);
+    }
+
+    .blue {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      background-color: rgb(79, 44, 235);
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .title {
+      width: 80%;
+      height: 100px;
+      margin: 0 auto 20px;
+      padding-top: 60px;
+      font-size: 20px;
+    }
+
+    .box {
+      position: relative;
+      margin: 0 auto;
+      width: 80%;
+      height: 60%;
+      background-color: #F5F5DC;
+      border: 5px solid #70CF96;
+    }
+
+    .footer {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .reset {
+      width: 80px;
+      height: 40px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div style="top:50px;left:50px;transform: translate3d(0px,0px,0px);"></div> -->
+  <div class="container">
+    <div class="title">
+      <div class="text">上下左右键控制红色方块，WASD键控制蓝色方块，两者相遇，游戏结束</div>
+    </div>
+    <div class="box">
+      <div style="top:200px;left:100px;" class="red"></div>
+      <div style="top:200px;left:250px;" class="blue"></div>
+    </div>
+    <div class="footer">
+      <button class="reset">重置</button>
+    </div>
+  </div>
+
+
+  <script>
+    var red = document.querySelector('.red')
+    var blue = document.querySelector('.blue')
+    var box = document.querySelector('.box')
+    var resetButtom = document.querySelector('.reset')
+
+    var redVx = 0 // 水平方向速度
+    var redVy = 0 // 垂直方向速度
+    var blueVx = 0
+    var blueVy = 0
+
+    // 记录某个方向键是否是按下状态的标识符
+    var leftPress = false
+    var rightPress = false
+    var upPress = false
+    var downPress = false
+
+    var wPress = false
+    var aPress = false
+    var sPress = false
+    var dPress = false
+
+    // 重置页面
+    reset()
+
+    // 监听键盘按下事件
+    function keydownEvent(e) {
+      // console.log(e);
+
+      // 如果按下了右方向键，rightPress 标志置为 true ，vx 置为 1，其他按键以此类推
+      // red 方块
+      if (e.key == 'ArrowRight') {
+        rightPress = true
+        redVx = 1
+      }
+      if (e.key == 'ArrowLeft') {
+        leftPress = true
+        redVx = -1
+      }
+      if (e.key == 'ArrowUp') {
+        upPress = true
+        redVy = -1
+      }
+      if (e.key == 'ArrowDown') {
+        downPress = true
+        redVy = 1
+      }
+
+      // blue 方块
+      if (e.key == 'd') {
+        dPress = true
+        blueVx = 1
+      }
+      if (e.key == 'a') {
+        aPress = true
+        blueVx = -1
+      }
+      if (e.key == 's') {
+        sPress = true
+        blueVy = 1
+      }
+      if (e.key == 'w') {
+        wPress = true
+        blueVy = -1
+      }
+    }
+
+
+    // 监听键盘抬起事件
+    function keyupEvent(e) {
+      // 如果抬起了右方向键，rightPress 标志置为 false，
+      // 如果此时左方向键是按下的状态，vx 置为 -1，如果此时左方向键不是按下的状态，vx 置为 0，其他按键以此类推
+
+      // red 方块
+      if (e.key == 'ArrowRight') {
+        if (leftPress) {
+          redVx = -1
+        } else {
+          redVx = 0
+        }
+        rightPress = false
+      }
+      if (e.key == 'ArrowLeft') {
+        if (rightPress) {
+          redVx = 1
+        } else {
+          redVx = 0
+        }
+        leftPress = false
+      }
+      if (e.key == 'ArrowUp') {
+        if (downPress) {
+          redVy = 1
+        } else {
+          redVy = 0
+        }
+        upPress = false
+      }
+      if (e.key == 'ArrowDown') {
+        if (upPress) {
+          redVy = -1
+        } else {
+          redVy = 0
+        }
+        downPress = false
+      }
+
+      // blue 方块
+      if (e.key == 'd') {
+        if (aPress) {
+          blueVx = -1
+        } else {
+          blueVx = 0
+        }
+        dPress = false
+      }
+      if (e.key == 'a') {
+        if (dPress) {
+          blueVx = 1
+        } else {
+          blueVx = 0
+        }
+        aPress = false
+      }
+      if (e.key == 'w') {
+        if (sPress) {
+          blueVy = 1
+        } else {
+          blueVy = 0
+        }
+        wPress = false
+      }
+      if (e.key == 's') {
+        if (wPress) {
+          blueVy = -1
+        } else {
+          blueVy = 0
+        }
+        sPress = false
+      }
+
+    }
+
+
+    var lastTime = 0
+
+    // 更新运动动画
+    function move(time) {
+      var timediff = time - lastTime // 获取两帧之间的时间差 
+      lastTime = time
+
+      // 根据方块速度，计算方块位置增量
+      var redDx = redVx * timediff * 0.4
+      var redDy = redVy * timediff * 0.4
+      var blueDx = blueVx * timediff * 0.4
+      var blueDy = blueVy * timediff * 0.4
+
+      // 如果按下了 上方向键或下方向键，水平增量缩小为 0.707 倍
+      if (upPress || downPress) {
+        redDx = redDx * Math.SQRT1_2
+      }
+      // 如果按下了 左方向键或右方向键，垂直增量缩小为 0.707 倍
+      if (leftPress || rightPress) {
+        redDy = redDy * Math.SQRT1_2
+      }
+
+      if (wPress || sPress) {
+        blueDx = blueDx * Math.SQRT1_2
+      }
+      if (aPress || dPress) {
+        blueDy = blueDy * Math.SQRT1_2
+      }
+
+      // 计算盒子边界
+      let TOP = 0
+      let BOTTOM = box.clientHeight - red.offsetHeight
+      let LEFT = 0
+      let RIGHT = box.clientWidth - red.offsetWidth
+
+      // 更新方块位置
+      red.style.left = parseFloat(red.style.left) + redDx + 'px'
+      red.style.top = parseFloat(red.style.top) + redDy + 'px'
+      blue.style.left = parseFloat(blue.style.left) + blueDx + 'px'
+      blue.style.top = parseFloat(blue.style.top) + blueDy + 'px'
+
+      // 避免方块超过盒子边界
+      if (parseFloat(red.style.left) <= LEFT) {
+        red.style.left = LEFT + 'px'
+      }
+      if (parseFloat(red.style.left) >= RIGHT) {
+        red.style.left = RIGHT + 'px'
+      }
+      if (parseFloat(red.style.top) <= TOP) {
+        red.style.top = TOP + 'px'
+      }
+      if (parseFloat(red.style.top) >= BOTTOM) {
+        red.style.top = BOTTOM + 'px'
+      }
+
+
+      if (parseFloat(blue.style.left) <= LEFT) {
+        blue.style.left = LEFT + 'px'
+      }
+      if (parseFloat(blue.style.left) >= RIGHT) {
+        blue.style.left = RIGHT + 'px'
+      }
+      if (parseFloat(blue.style.top) <= TOP) {
+        blue.style.top = TOP + 'px'
+      }
+      if (parseFloat(blue.style.top) >= BOTTOM) {
+        blue.style.top = BOTTOM + 'px'
+      }
+
+      // 获取蓝色方块的位置，和红色方块的碰撞边界
+      let bluePosTop = parseFloat(blue.style.top)
+      let bluePosLeft = parseFloat(blue.style.left)
+      let redPosTop = parseFloat(red.style.top)
+      let redPosLeft = parseFloat(red.style.left)
+
+      let redWidth = parseFloat(red.offsetWidth) * 0.85
+      let redHeight = parseFloat(red.offsetHeight) * 0.85
+
+      let leftBoundary = redPosLeft - redWidth
+      let rightBoundary = redPosLeft + redWidth
+      let topBoundary = redPosTop - redHeight
+      let bottomBoundary = redPosTop + redHeight
+
+      console.log(leftBoundary, rightBoundary, topBoundary, bottomBoundary, bluePosTop, bluePosLeft)
+
+      // 判断蓝色方块是否碰撞红色方块
+      if ((bluePosTop > topBoundary) && (bluePosTop < bottomBoundary)
+        && (bluePosLeft < rightBoundary) && (bluePosLeft > leftBoundary)) {
+        // console.log("yes")
+
+        document.removeEventListener('keydown', keydownEvent)
+        document.removeEventListener('keyup', keyupEvent)
+        reset()
+
+        // console.log(blueVx, blueVy);
+        alert("抓住了")
+        reset()
+      }
+
+
+
+      // let str = div.style.transform
+      // let ary = str.slice(12).split(",").map(it => parseFloat(it))
+      // let x = ary[0] + dx
+      // let y = ary[1] + dy
+      // console.log(x, y)
+      // div.style.transform = `translate3d(${x}px,${y}px,0px)`
+
+      requestAnimationFrame(move)
+    }
+    requestAnimationFrame(move)
+
+    // 重置方块位置
+    function reset() {
+      let boxHeight = box.clientHeight
+      let boxWidth = box.clientWidth
+
+      let redTop = boxHeight * 0.45
+      let blueTop = boxHeight * 0.45
+      let redLeft = boxWidth * 0.2
+      let blueLeft = boxWidth * 0.75
+
+      red.style.left = redLeft + 'px'
+      red.style.top = redTop + 'px'
+      blue.style.left = blueLeft + 'px'
+      blue.style.top = blueTop + 'px'
+
+
+      redVx = 0
+      redVy = 0
+      blueVx = 0
+      blueVy = 0
+
+      leftPress = false
+      rightPress = false
+      upPress = false
+      downPress = false
+
+      wPress = false
+      aPress = false
+      sPress = false
+      dPress = false
+
+      document.addEventListener('keydown', keydownEvent)
+      document.addEventListener('keyup', keyupEvent)
+    }
+
+
+    resetButtom.addEventListener('click', function () {
+      reset()
+    })
+
+
+  </script>
+</body>
+
+</html>
