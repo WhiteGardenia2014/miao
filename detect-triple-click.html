@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <script>
+    // 每一次三击事件，一定紧挨着在双击事件之后
+
+    var dblclickFlag = false
+    var lastTime = 0
+    document.addEventListener('dblclick', function (e) {
+      dblclickFlag = true // 双击事件发生后，记录发生的双击事件
+      lastTime = e.timeStamp // 并记录发生双击事件的时间戳
+    })
+
+    document.addEventListener('click', function (e) {
+      // 如果点击事件发生时，之前已经发生了一次双击事件，并且间隔事件足够短，就意味着发生了三击事件
+      if (dblclickFlag == true) {
+        if (e.timeStamp - lastTime < 300) {
+          document.body.innerText += "triple-click" + "\n"
+        }
+      }
+      // 每次发生三击事件后，要清空双击事件标志，等待下一次双击事件的发生
+      dblclickFlag = false
+    })
+  </script>
+</body>
+
+</html>
