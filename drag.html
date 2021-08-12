@@ -9,118 +9,190 @@
   <style>
     body {
       margin: 0;
+      /* height: 3000px; */
     }
 
-    .box {
+    .container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dragBox {
       box-sizing: border-box;
       width: 100px;
       height: 100px;
       position: absolute;
       border: 2px solid #333;
       box-shadow: inset 0px 0px 5px 2px #6663;
+      /* 禁止用户选择文本 */
+      user-select: none;
     }
 
     .red {
-      background-color: #CF3D33;
+      background-color: #E52F16;
     }
 
-    .blue {
-      background-color: #338DCF;
+    .orange {
+      background-color: #E59216;
     }
 
-    .green {
-      background-color: #33CF84;
+    .yellow {
+      background-color: #E5DD16;
     }
   </style>
 </head>
 
 <body>
-  <div class="box red" style="top: 100px;left: 100px; z-index: 1;"></div>
-  <div class="box blue" style="top: 150px;left: 150px; z-index: 2;"></div>
-  <div class="box green" style="top: 200px;left: 200px; z-index: 3;"></div>
-
+  <div class="container">
+  </div>
   <script>
-    var red = document.querySelector(".red")
-    var blue = document.querySelector(".blue")
-    var green = document.querySelector(".green")
-    var zIndex = 4
-    var pageWidth = window.innerWidth
-    var pageHeight = window.innerHeight
+    var container = document.querySelector(".container")
+    var zIndex = 1 // 磁贴初始层级
+    var TOP = 100 // 磁贴初始位置
+    var LEFT = 100
+    var COLOR = 0 // 磁贴初始颜色
+    var COUNT = 0 // 磁贴数量
 
-    dragBox(red)
-    dragBox(blue)
-    dragBox(green)
+    createBox()
+    createBox()
+    createBox()
 
-    // 实现拖拽功能的函数，为 box 添加拖拽功能
-    function dragBox(box) {
-      box.addEventListener('mousedown', function (e) {
-        if (e.which == 1) {
-          e.preventDefault()
+    // 创建一个磁贴
+    function createBox() {
+      if (COUNT >= 12) { // 最多创建 12 个磁贴
+        return
+      }
 
-          box.style.zIndex = zIndex++
-          var pos = mousePos(box)
+      let box = document.createElement('div')
+      box.classList.add('dragBox')
+      box.style.top = TOP + 'px'
+      box.style.left = LEFT + 'px'
+      box.style.zIndex = zIndex++
+      box.style.backgroundColor = `hsl(${COLOR}, 70%, 70%)`
+      container.append(box)
 
-          addEventListener('mousemove', move)
-          addEventListener('mouseup', removeBind)
-          addEventListener('blur', removeBind)
-        }
-
-        // 解除绑定
-        function removeBind() {
-          removeEventListener('mousemove', move)
-          removeEventListener('mouseup', removeBind)
-          removeEventListener('blur', removeBind)
-        }
-
-        // 拖拽元素
-        function move(e) {
-          if (e.which !== 1) {
-            removeEventListener('mousemove', move)
-          }
-
-          // 用鼠标实时位置更新元素位置
-          box.style.left = e.clientX - pos.x + 'px'
-          box.style.top = e.clientY - pos.y + 'px'
-
-          // 不允许元素移出视口边界
-          pageWidth = window.innerWidth
-          pageHeight = window.innerHeight
-
-          if (parseFloat(box.style.left) <= 0) {
-            box.style.left = 0 + "px"
-          }
-          if (parseFloat(box.style.left) >= pageWidth - box.offsetWidth) {
-            box.style.left = pageWidth - box.offsetWidth + "px "
-          }
-          if (parseFloat(box.style.top) <= 0) {
-            box.style.top = 0 + "px"
-          }
-          if (parseFloat(box.style.top) >= pageHeight - box.offsetHeight) {
-            box.style.top = pageHeight - box.offsetHeight + "px "
-          }
-        }
-      })
+      TOP += 10
+      LEFT += 10
+      COLOR += 30
+      COUNT++
     }
+
+    // 移除一个磁贴
+    function removeBox() {
+      if (COUNT <= 0) { // 如果没有了磁贴，直接返回
+        return
+      }
+
+      container.removeChild(container.lastElementChild)
+
+      TOP -= 10
+      LEFT -= 10
+      COLOR -= 30
+      COUNT--
+    }
+
+    // Ctrl + A 键创建一个磁贴
+    window.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key == 'a') {
+        createBox()
+      }
+    })
+
+    // Ctrl + Z 键移除一个磁贴
+    window.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key == 'z') {
+        removeBox()
+      }
+    })
+
+
+    // 在窗口上监听鼠标按下事件，如果鼠标按下的是 dragBox 元素，就为其添加拖拽事件，如果不是 dragBox 元素，直接返回。
+    window.addEventListener('mousedown', function (e) {
+      let box = e.target
+      if (!box.classList.contains('dragBox')) {
+        return
+      }
+
+      if (e.which == 1) {
+        e.preventDefault()
+
+        box.style.zIndex = zIndex++
+        var pos = mousePos(box)
+
+        addEventListener('mousemove', move)
+        addEventListener('mouseup', removeBind)
+        addEventListener('blur', removeBind)
+      }
+
+      // 解除绑定函数
+      function removeBind() {
+        removeEventListener('mousemove', move)
+        removeEventListener('mouseup', removeBind)
+        removeEventListener('blur', removeBind)
+      }
+
+      // 拖拽元素
+      function move(e) {
+        if (e.which !== 1) {
+          removeEventListener('mousemove', move)
+          return
+        }
+
+        // 用鼠标实时位置更新元素位置
+        var left = e.clientX - pos.x
+        var top = e.clientY - pos.y
+
+        // 不允许元素移出视口边界，并实现磁吸效果
+        pageWidth = container.clientWidth
+        pageHeight = container.clientHeight
+
+        if (left <= 20) {
+          left = 0
+        }
+        if (left >= pageWidth - box.offsetWidth - 20) {
+          left = pageWidth - box.offsetWidth
+        }
+        if (top <= 20) {
+          top = 0
+        }
+        if (top >= pageHeight - box.offsetHeight - 20) {
+          top = pageHeight - box.offsetHeight
+        }
+
+        // 更新元素的位置
+        box.style.left = left + 'px'
+        box.style.top = top + 'px'
+      }
+    })
+
 
     // 当窗口大小发生变化时，修正每个元素的位置
     addEventListener('resize', function (e) {
-      var boxs = Array.from(document.querySelectorAll('.box'))
-      pageWidth = window.innerWidth
-      pageHeight = window.innerHeight
+      var boxs = Array.from(document.querySelectorAll('.dragBox'))
+
+      pageWidth = container.clientWidth
+      pageHeight = container.clientHeight
 
       for (var box of boxs) {
-        if (parseFloat(box.style.left) <= 0) {
-          box.style.left = 0 + "px"
+        let left = parseFloat(box.style.left)
+        let top = parseFloat(box.style.top)
+
+        if (left <= 20) {
+          left = 0
         }
-        if (parseFloat(box.style.left) >= pageWidth - box.offsetWidth) {
-          box.style.left = pageWidth - box.offsetWidth + "px "
+        if (left >= pageWidth - box.offsetWidth - 20) {
+          left = pageWidth - box.offsetWidth
         }
-        if (parseFloat(box.style.top) <= 0) {
-          box.style.top = 0 + "px"
+        if (top <= 20) {
+          top = 0
         }
-        if (parseFloat(box.style.top) >= pageHeight - box.offsetHeight) {
-          box.style.top = pageHeight - box.offsetHeight + "px "
+        if (top >= pageHeight - box.offsetHeight - 20) {
+          top = pageHeight - box.offsetHeight
         }
+
+        box.style.left = left + 'px'
+        box.style.top = top + 'px'
       }
     })
 
