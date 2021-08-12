@@ -12,6 +12,11 @@
       /* height: 3000px; */
     }
 
+    p {
+      margin: 0;
+      padding: 10px;
+    }
+
     .container {
       position: fixed;
       width: 100%;
@@ -46,6 +51,9 @@
 <body>
   <div class="container">
   </div>
+  <p>
+    Ctrl + A 键创建一个磁贴，Ctrl + Z 键移除一个磁贴
+  </p>
   <script>
     var container = document.querySelector(".container")
     var zIndex = 1 // 磁贴初始层级
@@ -95,6 +103,7 @@
     // Ctrl + A 键创建一个磁贴
     window.addEventListener('keydown', function (e) {
       if (e.ctrlKey && e.key == 'a') {
+        e.preventDefault()
         createBox()
       }
     })
@@ -102,6 +111,7 @@
     // Ctrl + Z 键移除一个磁贴
     window.addEventListener('keydown', function (e) {
       if (e.ctrlKey && e.key == 'z') {
+        e.preventDefault()
         removeBox()
       }
     })
