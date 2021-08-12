@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .box {
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      border: 2px solid #333;
+      box-shadow: inset 0px 0px 5px 2px #6663;
+    }
+
+    .red {
+      background-color: #CF3D33;
+    }
+
+    .blue {
+      background-color: #338DCF;
+    }
+
+    .green {
+      background-color: #33CF84;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box red" style="top: 100px;left: 100px; z-index: 1;"></div>
+  <div class="box blue" style="top: 150px;left: 150px; z-index: 2;"></div>
+  <div class="box green" style="top: 200px;left: 200px; z-index: 3;"></div>
+
+  <script>
+    var red = document.querySelector(".red")
+    var blue = document.querySelector(".blue")
+    var green = document.querySelector(".green")
+    var zIndex = 4
+    var pageWidth = window.innerWidth
+    var pageHeight = window.innerHeight
+
+    dragBox(red)
+    dragBox(blue)
+    dragBox(green)
+
+    // 实现拖拽功能的函数，为 box 添加拖拽功能
+    function dragBox(box) {
+      box.addEventListener('mousedown', function (e) {
+        if (e.which == 1) {
+          e.preventDefault()
+
+          box.style.zIndex = zIndex++
+          var pos = mousePos(box)
+
+          addEventListener('mousemove', move)
+          addEventListener('mouseup', removeBind)
+          addEventListener('blur', removeBind)
+        }
+
+        // 解除绑定
+        function removeBind() {
+          removeEventListener('mousemove', move)
+          removeEventListener('mouseup', removeBind)
+          removeEventListener('blur', removeBind)
+        }
+
+        // 拖拽元素
+        function move(e) {
+          if (e.which !== 1) {
+            removeEventListener('mousemove', move)
+          }
+
+          // 用鼠标实时位置更新元素位置
+          box.style.left = e.clientX - pos.x + 'px'
+          box.style.top = e.clientY - pos.y + 'px'
+
+          // 不允许元素移出视口边界
+          pageWidth = window.innerWidth
+          pageHeight = window.innerHeight
+
+          if (parseFloat(box.style.left) <= 0) {
+            box.style.left = 0 + "px"
+          }
+          if (parseFloat(box.style.left) >= pageWidth - box.offsetWidth) {
+            box.style.left = pageWidth - box.offsetWidth + "px "
+          }
+          if (parseFloat(box.style.top) <= 0) {
+            box.style.top = 0 + "px"
+          }
+          if (parseFloat(box.style.top) >= pageHeight - box.offsetHeight) {
+            box.style.top = pageHeight - box.offsetHeight + "px "
+          }
+        }
+      })
+    }
+
+    // 当窗口大小发生变化时，修正每个元素的位置
+    addEventListener('resize', function (e) {
+      var boxs = Array.from(document.querySelectorAll('.box'))
+      pageWidth = window.innerWidth
+      pageHeight = window.innerHeight
+
+      for (var box of boxs) {
+        if (parseFloat(box.style.left) <= 0) {
+          box.style.left = 0 + "px"
+        }
+        if (parseFloat(box.style.left) >= pageWidth - box.offsetWidth) {
+          box.style.left = pageWidth - box.offsetWidth + "px "
+        }
+        if (parseFloat(box.style.top) <= 0) {
+          box.style.top = 0 + "px"
+        }
+        if (parseFloat(box.style.top) >= pageHeight - box.offsetHeight) {
+          box.style.top = pageHeight - box.offsetHeight + "px "
+        }
+      }
+    })
+
+    // 获取鼠标和 node 元素的相对位置
+    function mousePos(node) {
+      var box = node.getBoundingClientRect()
+
+      return {
+        x: window.event.clientX - box.x,
+        y: window.event.clientY - box.y,
+      }
+    }
+  </script>
+</body>
+
+</html>
