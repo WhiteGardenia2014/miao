@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dot {
+      height: 6px;
+      width: 6px;
+      border-radius: 3px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var COLOR = 0
+    var x = 0
+    var y = 0
+    var start = true
+
+    addEventListener('mousemove', getpos)
+    function getpos(e) {
+      x = e.pageX
+      y = e.pageY
+
+      if (start) {
+        start = false
+        // requestAnimationFrame(move)
+        setInterval(() => {
+          move()
+        }, 30);
+      }
+    }
+
+
+    function move() {
+      console.log(3)
+      var dot = document.createElement('div')
+      dot.className = "dot"
+      dot.style.top = (y - 3) + 'px'
+      dot.style.left = (x - 3) + 'px'
+      dot.style.backgroundColor = `hsl(${COLOR}, 70%, 70%)`
+      document.body.append(dot)
+      COLOR = (COLOR + 10) % 360
+
+      setTimeout(() => {
+        document.body.firstElementChild && document.body.removeChild(document.body.firstElementChild)
+      }, 120);
+
+      // requestAnimationFrame(move)
+    }
+
+
+
+  </script>
+</body>
+
+</html>
