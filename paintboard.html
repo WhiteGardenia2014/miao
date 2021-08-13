@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 10px;
+    }
+
+    .container {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .header {
+      width: 100%;
+      height: 100px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      height: 64px;
+      line-height: 64px;
+      width: 100px;
+      font-size: 30px;
+      padding: 0 20px;
+    }
+
+    .tools {
+      position: relative;
+      height: 64px;
+      flex: 1;
+      padding: 0 20px;
+      font-size: 20px;
+    }
+
+    .color {
+      position: relative;
+      height: 64px;
+      width: 80px;
+      padding: 0 20px;
+      font-size: 20px;
+    }
+
+    .range {
+      position: relative;
+      height: 64px;
+      width: 170px;
+      padding: 0 20px;
+      font-size: 20px;
+    }
+
+    .reset {
+      margin: 10px;
+      height: 40px;
+      width: 70px;
+      font-size: 20px;
+    }
+
+    .text {
+      margin-bottom: 5px;
+      text-indent: 2px;
+    }
+
+    label {
+      position: absolute;
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 50px;
+      height: 27px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 25px;
+      background-color: rgb(226, 220, 220);
+      box-shadow: inset -1px -1px 3px rgb(0, 0, 0, 0.5);
+    }
+
+    label[for="tool-rect"] {
+      left: 80px;
+      line-height: 20px;
+    }
+
+    label[for="tool-ellipse"] {
+      left: 140px;
+      line-height: 24px;
+      font-size: 24px;
+    }
+
+    input[id^="tool"] {
+      display: none;
+    }
+
+    input[id^="tool"]:checked+label {
+      background-color: rgb(171, 230, 238);
+      box-shadow: inset 1px 1px 3px rgb(0, 0, 0, 0.5);
+    }
+
+    svg {
+      border: 3px solid black;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">画板</div>
+      <div class="tools">
+        <div class="text">工具：</div>
+        <input type="radio" id="tool-line" name="tool" checked>
+        <label for="tool-line">&#9998;</label>
+
+        <input type="radio" id="tool-rect" name="tool">
+        <label for="tool-rect">&#9645;</label>
+
+        <input type="radio" id="tool-ellipse" name="tool">
+        <label for="tool-ellipse">&#11053;</label>
+      </div>
+      <div class="color">
+        <div class="text">颜色</div>
+        <input type="color" id="colorInput">
+      </div>
+      <div class="range">
+        <div class="text">线条粗细：<span class="line-width-value">2</span></div>
+        <input type="range" id="widthInput" min="1" max="10" value="2">
+      </div>
+
+    </div>
+    <svg width="100%" height="600"></svg>
+    <button class="reset">重置</button>
+  </div>
+
+  <script>
+    var svg = document.querySelector('svg')
+    var colorInput = document.querySelector('#colorInput')
+    var widthInput = document.querySelector('#widthInput')
+    var widthSpan = document.querySelector('.line-width-value')
+    var reset = document.querySelector('.reset')
+    var tools = document.querySelector('.tools')
+    var currentTool = 'tool-line'
+
+    // 更新宽度输入框的显示值
+    widthInput.addEventListener('input', function (e) {
+      widthSpan.textContent = widthInput.value
+    })
+
+    // 在 svg 上监听鼠标按下事件，鼠标按下后触发鼠标移动事件
+    svg.addEventListener('mousedown', function (e) {
+      if (e.which == 1) { // 如果在 svg 内按下了左键，就添加鼠标移动监听器
+
+        if (currentTool == 'tool-line') { // 如果是铅笔工具的情况
+          // 注意 draw 函数定义在 if 语句内部，在 if 语句外部（ if 语句之前），draw = undefined
+
+          document.addEventListener('mousemove', draw) // 添加鼠标移动监听器
+          e.preventDefault()
+
+          var pos = mousePos(svg) // 按下左键时，记录第一个点的位置
+          var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline') // 创建折线节点
+          polyline.setAttribute('fill', 'none') // 设置折线不填充
+          polyline.setAttribute('stroke', colorInput.value) // 设置折线颜色
+          polyline.setAttribute('stroke-width', widthInput.value) // 设置折线粗细
+          polyline.setAttribute('stroke-linecap', 'round') // 设置折线两端为圆角
+          polyline.setAttribute('stroke-linejoin', 'round') // 设置折线折点处为圆角
+
+          svg.append(polyline)
+          var points = `${pos.x} ${pos.y} `
+          polyline.setAttribute('points', points) // 将第一个点的位置添加到 polyline 上
+
+
+          // 鼠标移动时触发的绘图程序
+          function draw(e) {
+            if (e.which !== 1) { // 如果松开了左键，就移除鼠标移动监听器
+              document.removeEventListener('mousemove', draw)
+            } else {
+              var pos = mousePos(svg) // 每次鼠标移动，获取当前鼠标位置
+              points += `${pos.x} ${pos.y} ` // 并将当前位置拼接到 points 上
+              polyline.setAttribute('points', points) // 用 points 更新 polyline 的内容
+            }
+          }
+        }
+
+
+      }
+    })
+
+    // Ctrl + Z 键撤销上一步操作
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key == 'z') {
+        svg.lastElementChild && svg.removeChild(svg.lastElementChild) // 如果 svg 存在子元素，就移除最后一个子元素
+      }
+    })
+
+    // 为重置按钮绑定点击事件，重置画板
+    reset.addEventListener('click', function (e) {
+      if (e.which == 1) {
+        svg.textContent = ''
+      }
+    })
+
+    tools.addEventListener('input', function (e) {
+      // console.log(e.target)
+      currentTool = e.target.id
+      console.log(currentTool)
+    })
+
+
+    // 获取鼠标和 node 元素的相对位置
+    function mousePos(node) {
+      var box = node.getBoundingClientRect()
+
+      return {
+        x: window.event.clientX - box.x,
+        y: window.event.clientY - box.y,
+      }
+    }
+  </script>
+</body>
+
+</html>
