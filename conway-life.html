@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conway’s Game of Life</title>
+  <style>
+    main {
+      margin: auto;
+    }
+
+    .title {
+      font-size: 24px;
+      text-align: center;
+      margin: 5px;
+    }
+
+    .container {
+      display: flow-root;
+      margin: auto;
+    }
+
+    .cell {
+      float: left;
+      box-sizing: border-box;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #333;
+      margin: 2px;
+      box-shadow: 0px 0px 2px #666;
+    }
+
+    .control {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    button {
+      margin: 10px;
+      font-size: 18px;
+    }
+
+    .text {
+      font-size: 18px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="main">
+    <div class="title">Conway’s Game of Life</div>
+    <div class="container">
+    </div>
+    <div class="control">
+      <button id="evolutionButton">演化下一代</button>
+      <button id="auto">开始自动演化</button>
+      <button id="random">随机生成</button>
+      <button id="clear">清空</button>
+      <span class="text">当前代数：<span class="generation">1</span></span>
+    </div>
+  </main>
+
+  <script>
+    let row = 40 // 行数
+    let col = 60 // 列数
+    let generation = 1 // 代数
+
+    let cellArray = Array(row).fill(0).map(it => Array(col).fill(0))
+    let cellArrayCopy = Array(row).fill(0).map(it => Array(col).fill(0))
+
+    let container = document.querySelector('.container')
+    let main = document.querySelector('.main')
+    container.style.width = col * 19 + 'px'
+    main.style.width = container.style.width
+
+    let generationSpan = document.querySelector('.generation') // 显示代数文本
+
+    let evolutionButton = document.querySelector('#evolutionButton') // 演化下一代按钮
+    let autoButton = document.querySelector('#auto') // 自动演化按钮
+    let autoFlag = false // 自动演化标志
+    let autoTimer = null // 自动演化定时器
+
+    let randomButton = document.querySelector('#random') // 随机生成按钮
+    let clearButton = document.querySelector('#clear') // 清空按钮
+
+    // 创建细胞
+    for (let i = 0; i < row; i++) {
+      for (let j = 0; j < col; j++) {
+        let div = document.createElement('div')
+        div.classList.add('cell')
+        div.dataset.index = `${i}-${j}`
+        container.append(div)
+      }
+    }
+    let cells = Array.from(document.querySelectorAll('.cell'))
+
+    // paintCell()
+
+    // 演化下一代
+    function evolution() {
+
+      let topIndex = 0
+      let leftIndex = 0
+      let bottomIndex = 0
+      let rightIndex = 0
+
+      let leftTopCell = 0
+      let topCell = 0
+      let rightTopCell = 0
+      let leftCell = 0
+      let rightCell = 0
+      let leftBottonCell = 0
+      let bottomCell = 0
+      let rightBottomCell = 0
+
+      for (let i = 0; i < row; i++) {
+
+        for (let j = 0; j < col; j++) {
+
+          topIndex = (i == 0 ? row - 1 : i - 1)
+          bottomIndex = (i == row - 1 ? 0 : i + 1)
+          leftIndex = (j == 0 ? col - 1 : j - 1)
+          rightIndex = (j == col - 1 ? 0 : j + 1)
+
+          leftTopCell = cellArray[topIndex][leftIndex]
+          topCell = cellArray[topIndex][j]
+          rightTopCell = cellArray[topIndex][rightIndex]
+          leftCell = cellArray[i][leftIndex]
+          rightCell = cellArray[i][rightIndex]
+          leftBottonCell = cellArray[bottomIndex][leftIndex]
+          bottomCell = cellArray[bottomIndex][j]
+          rightBottomCell = cellArray[bottomIndex][rightIndex]
+
+          // 当前位置细胞周围存活的细胞数量
+          let count = leftTopCell + topCell + rightTopCell + leftCell + rightCell + leftBottonCell + bottomCell + rightBottomCell
+
+          // 注意不要直接修改细胞数组，而是修改细胞数组的拷贝，避免当前代互相影响
+          if (cellArray[i][j] == 1) {
+            if (count < 2 || count > 3) {
+              cellArrayCopy[i][j] = 0
+            } else {
+              cellArrayCopy[i][j] = 1
+            }
+          } else {
+            if (count == 3) {
+              cellArrayCopy[i][j] = 1
+            } else {
+              cellArrayCopy[i][j] = 0
+            }
+          }
+        }
+      }
+
+      // 更新下一代细胞数组
+      for (let i = 0; i < row; i++) {
+        cellArray[i] = cellArrayCopy[i].slice()
+      }
+
+      // 代数加一
+      generation++
+    }
+
+
+    // 在 container 上添加事件代理，点击细胞位置将产生新细胞
+    container.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('cell')) {
+        return
+      }
+      let index = e.target.dataset.index.split('-')
+      let x = index[0]
+      let y = index[1]
+
+      cellArray[x][y] = 1
+      paintCell()
+
+    })
+
+
+    // 更新细胞样式
+    function paintCell() {
+      let ary = [].concat(...cellArray)
+
+      for (let i = 0; i < ary.length; i++) {
+        if (ary[i] == 1) {
+          cells[i].style.backgroundColor = '#666'
+        } else {
+          cells[i].style.backgroundColor = '#fff'
+        }
+      }
+
+      // 更新代数
+      generationSpan.textContent = generation
+    }
+
+
+    // 为演化下一代按钮绑定点击事件
+    evolutionButton.addEventListener('click', function (e) {
+      evolution()
+      paintCell()
+    })
+
+
+    // 为自动演化按钮绑定点击事件
+    autoButton.addEventListener('click', function (e) {
+      if (autoFlag) {
+        autoFlag = false
+        autoButton.textContent = '开始自动演化'
+        clearInterval(autoTimer)
+      } else {
+        autoFlag = true
+        autoButton.textContent = '停止自动演化'
+        autoTimer = setInterval(() => {
+          evolution()
+          paintCell()
+        }, 100);
+      }
+    })
+
+
+    // 为清空按钮绑定点击事件
+    clearButton.addEventListener('click', function (e) {
+      cellArray = Array(row).fill(0).map(it => Array(col).fill(0))
+      generation = 1
+      paintCell()
+    })
+
+
+    // 为随机生成按钮绑定点击事件
+    randomButton.addEventListener('click', function (e) {
+      cellArray = Array(row).fill(0).map(it => Array(col).fill(0))
+      for (let i = 0; i < row * col * 0.4; i++) {
+        let i = Math.random() * row | 0
+        let j = Math.random() * col | 0
+        cellArray[i][j] = 1
+      }
+      paintCell()
+    })
+
+
+  </script>
+</body>
+
+</html>
