@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button {
+      border: 0px solid;
+    }
+
+    [class^="container"] {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container1">
+    <div data-tabname="Home">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, quis beatae. Dolore cumque
+      accusantium deleniti pariatur eaque, ipsam sequi magnam amet. Dolore architecto nulla aperiam non perspiciatis qui
+      esse laborum! Sapiente, facilis recusandae iusto enim reprehenderit doloremque accusamus impedit unde harum eos
+      commodi alias architecto! Sit ad eaque vero unde quasi incidunt amet voluptatum tempore. Aliquam doloribus
+      deserunt sed optio delectus vero voluptatum adipisci facilis quae minima repudiandae laudantium blanditiis et
+      distinctio, enim tenetur architecto deleniti exercitationem dolores porro vitae. Harum fugit adipisci ab nobis ea
+      sequi nulla dolorem doloribus, asperiores earum? Repudiandae quaerat minus numquam et molestias voluptas sapiente.
+    </div>
+    <div data-tabname="Link">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quaerat, voluptas adipisci
+      molestiae, ducimus provident consequuntur ab eum vero nulla beatae corrupti, nesciunt tenetur nam cumque assumenda
+      eligendi blanditiis suscipit error accusantium quasi non quae. Dicta voluptatem quod ipsa harum consequuntur! Quia
+      nulla iste quos velit, officia eum ducimus cumque dicta, fuga vero temporibus, molestiae quo eligendi ab ipsa
+      totam iure cupiditate voluptates provident itaque. Officiis saepe corrupti repellat eaque qui est enim pariatur
+      nemo, ratione exercitationem molestiae labore sit maiores. Reprehenderit quis ea asperiores earum eius, iusto
+      maiores veritatis cum ipsum facilis repellat, voluptatibus optio, quaerat officia. Dolor, quae.
+    </div>
+    <div data-tabname="About">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione sit obcaecati
+      earum?
+      Quaerat temporibus quod ea ipsum omnis ex sunt accusantium nulla explicabo saepe aut aliquid in voluptatum, esse
+      accusamus libero sed autem at magni labore rem tempora a! Beatae quo veniam in et molestiae maxime ut alias rerum
+      doloremque, quidem, nam itaque non sint ad quod voluptatem sapiente molestias nihil impedit quibusdam quis labore
+      repellat laboriosam. Numquam magni laudantium, cum eaque corrupti nihil sed eos, totam aspernatur distinctio
+      officia sint dolorum ad quis velit excepturi facere ullam possimus iusto eum blanditiis. Explicabo maiores
+      corrupti iure. Delectus, architecto exercitationem.
+    </div>
+  </div>
+  <div class="container2">
+    <div data-tabname="AAA">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, quis beatae. Dolore cumque
+      accusantium deleniti pariatur eaque, ipsam sequi magnam amet. Dolore architecto nulla aperiam non perspiciatis qui
+      esse laborum! Sapiente, facilis recusandae iusto enim reprehenderit doloremque accusamus impedit unde harum eos
+      commodi alias architecto! Sit ad eaque vero unde quasi incidunt amet voluptatum tempore. Aliquam doloribus
+      deserunt sed optio delectus vero voluptatum adipisci facilis quae minima repudiandae laudantium blanditiis et
+      distinctio, enim tenetur architecto deleniti exercitationem dolores porro vitae. Harum fugit adipisci ab nobis ea
+      sequi nulla dolorem doloribus, asperiores earum? Repudiandae quaerat minus numquam et molestias voluptas sapiente.
+    </div>
+    <div data-tabname="BBB">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quaerat, voluptas adipisci
+      molestiae, ducimus provident consequuntur ab eum vero nulla beatae corrupti, nesciunt tenetur nam cumque assumenda
+      eligendi blanditiis suscipit error accusantium quasi non quae. Dicta voluptatem quod ipsa harum consequuntur! Quia
+      nulla iste quos velit, officia eum ducimus cumque dicta, fuga vero temporibus, molestiae quo eligendi ab ipsa
+      totam iure cupiditate voluptates provident itaque. Officiis saepe corrupti repellat eaque qui est enim pariatur
+      nemo, ratione exercitationem molestiae labore sit maiores. Reprehenderit quis ea asperiores earum eius, iusto
+      maiores veritatis cum ipsum facilis repellat, voluptatibus optio, quaerat officia. Dolor, quae.
+    </div>
+    <div data-tabname="CCC">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione sit obcaecati
+      earum?
+      Quaerat temporibus quod ea ipsum omnis ex sunt accusantium nulla explicabo saepe aut aliquid in voluptatum, esse
+      accusamus libero sed autem at magni labore rem tempora a! Beatae quo veniam in et molestiae maxime ut alias rerum
+      doloremque, quidem, nam itaque non sint ad quod voluptatem sapiente molestias nihil impedit quibusdam quis labore
+      repellat laboriosam. Numquam magni laudantium, cum eaque corrupti nihil sed eos, totam aspernatur distinctio
+      officia sint dolorum ad quis velit excepturi facere ullam possimus iusto eum blanditiis. Explicabo maiores
+      corrupti iure. Delectus, architecto exercitationem.
+    </div>
+  </div>
+  <script>
+    function asTabs(node) {
+      let children = Array.from(node.children)
+      var buttons = []
+      for (let child of children) {
+        let button = document.createElement('button')
+        buttons.push(button)
+
+        button.textContent = child.dataset.tabname
+        child.style.display = 'none'
+
+        button.addEventListener('click', function (e) {
+          children.forEach(it => it.style.display = 'none')
+          child.style.display = 'block'
+
+          buttons.forEach(it => it.style.backgroundColor = '')
+          button.style.backgroundColor = 'pink'
+        })
+
+        node.insertBefore(button, children[0])
+      }
+      node.firstElementChild.click()
+    }
+    asTabs(document.querySelector('.container1'))
+    asTabs(document.querySelector('.container2'))
+  </script>
+</body>
+
+</html>
