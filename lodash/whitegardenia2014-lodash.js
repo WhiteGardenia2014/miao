@@ -1,4 +1,4 @@
-var whitegardenia2014 = function () {
+var whitegardenia2014 = (function () {
 
   //***** 类型判断 *****//
 
@@ -84,6 +84,82 @@ var whitegardenia2014 = function () {
   function difference(array, ...values) {
     let dif = [].concat(...values)
     return array.filter(item => !dif.includes(item))
+  }
+
+  // 依赖 iteratee 的结果，去掉 array 中，values内的值
+  function differenceBy(array, ...values) {
+    let iteratee = values.pop() // 取出 values 最后一项
+    if (isArray(iteratee)) { // 如果最后一项为 array，与 difference 相同处理
+      values.push(iteratee)
+      return difference(array, ...values)
+    }
+
+    // 如果最后一项不为 array，需要转换为函数
+    let predicate = transType(iteratee)
+
+    let dif = [].concat(...values).map(predicate)
+    return array.filter(item => {
+      let value = predicate(item)
+      if (dif.includes(value)) {
+        return false
+      } else {
+        return true
+      }
+    })
+  }
+
+  // 接受 comparator(aryVal, othVal) 作为比较器，去掉 array 中，values内的值
+  function differenceWith(array, ...values) {
+    let comparator = values.pop() // 取出 values 最后一项
+    if (isArray(comparator)) { // 如果最后一项为 array，与 difference 相同处理
+      values.push(comparator)
+      return difference(array, ...values)
+    }
+
+    // 如果最后一项不为 array，则为比较器函数
+    let dif = [].concat(...values)
+    return array.filter(item => {
+      if (dif.some(it => comparator(it, item))) {
+        return false
+      } else {
+        return true
+      }
+    })
+  }
+
+  // 从第 n 项开始截取数组
+  function drop(array, n = 1) {
+    return array.slice(n)
+  }
+
+  // 从倒数第 n 项开始截取数组
+  function dropRight(array, n = 1) {
+    if (n == 0) {
+      return array
+    }
+    return array.slice(0, -n)
+  }
+
+  // 使用 iteratee 从前到后处理每个元素，从 iteratee 第一次返回 falsy 值的位置开始向后截取数组
+  function dropWhile(array, iteratee) {
+    let predicate = transType(iteratee)
+    for (var i = 0; i < array.length; i++) {
+      if (!predicate(array[i])) {
+        break
+      }
+    }
+    return drop(array, i)
+  }
+
+  // 使用 iteratee 从后到前处理每个元素，从 iteratee 第一次返回 falsy 值的位置开始向前截取数组
+  function dropRightWhile(array, iteratee) {
+    let predicate = transType(iteratee)
+    for (var i = array.length - 1; i >= 0; i--) {
+      if (!predicate(array[i])) {
+        break
+      }
+    }
+    return array.slice(0, i + 1)
   }
 
   // array 数组去重
@@ -610,6 +686,12 @@ var whitegardenia2014 = function () {
     chunk: chunk,
     compact: compact,
     difference: difference,
+    differenceBy: differenceBy,
+    differenceWith: differenceWith,
+    drop: drop,
+    dropRight: dropRight,
+    dropWhile: dropWhile,
+    dropRightWhile: dropRightWhile,
     flatten: flatten,
     flattenDeep: flattenDeep,
     flattenDepth: flattenDepth,
@@ -646,4 +728,4 @@ var whitegardenia2014 = function () {
     parseJson: parseJson,
     stringifyJson: stringifyJson,
   }
-}()
+})()
